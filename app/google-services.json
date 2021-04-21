@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "378379190742",
+    "project_id": "profit-trader-6c00e",
+    "storage_bucket": "profit-trader-6c00e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378379190742:android:175988fc83021da0bce477",
+        "android_client_info": {
+          "package_name": "com.example.profittrader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378379190742-tf58uo0arfp98mg5gr5vc8p99icv1ts2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAE4BjEO6AeKAbiKEYSYCnyuGytA9IelMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378379190742-tf58uo0arfp98mg5gr5vc8p99icv1ts2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
