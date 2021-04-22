@@ -103,7 +103,7 @@ public class RegisterAdmin extends AppCompatActivity {
                                 Passwordpath.setValue(password1);
                                 chittyCount.setValue(0);
                                 // passw2.setValue(pass2);
-                                Intent d = new Intent(RegisterAdmin.this, MainActivity.class);
+                                Intent d = new Intent(RegisterAdmin.this, AdminLogin.class);
                                 startActivity(d);
                                 finish();
                             } else {

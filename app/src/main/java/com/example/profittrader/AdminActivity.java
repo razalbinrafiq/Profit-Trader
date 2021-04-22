@@ -122,7 +122,7 @@ public class AdminActivity extends AppCompatActivity {
             //  Toast.makeText(MainActivity.this,user, Toast.LENGTH_SHORT).show();
         }
 
-       // getRef1 = FirebaseDatabase.getInstance().getReference("admins"+"/"+user+"/chittycount");
+        getRef1 = FirebaseDatabase.getInstance().getReference("admins"+"/"+user+"/sharecount");
         addShareButton=(Button)findViewById(R.id.addShareButton);
         mLayout=(GridLayout) findViewById(R.id.mylayout);
 
@@ -147,8 +147,12 @@ public class AdminActivity extends AppCompatActivity {
                     //                mLayout.addView(dmv.nameTextVIew(getApplicationContext(),data),i);
                     mLayout.addView(sentText(getApplicationContext(),data),i);
                     getShareName=snapshot.child(data).child("name").getValue(String.class);
-                    mLayout.addView(activeSharesButton(getApplicationContext()),i+1);
-                    i=i+2;
+                    String getShareStatus=snapshot.child(data).child("status").getValue(String.class);
+                    if(getShareStatus.equals("active")){
+                        mLayout.addView(activeSharesButton(getApplicationContext()),i+1);
+                        i=i+2;
+
+                    }
 
                 }
 
@@ -202,16 +206,19 @@ public class AdminActivity extends AppCompatActivity {
                 String fbChittynum="admins/"+user+"/shares/"+num;
                 String fbChittyname=fbChittynum+"/name";
                 String fbdate=fbChittynum +"/date";
+                String fbStatus=fbChittynum+"/status";
                 String fbpaymentdate=fbChittynum +"/shareamount";
 
                 DatabaseReference mDbRef1 = mDatabase.getReference(fbChittyname);
                 DatabaseReference mDbRef2 = mDatabase.getReference(fbdate);
                 DatabaseReference mDbRef3= mDatabase.getReference(fbpaymentdate);
+                DatabaseReference mDbRef5= mDatabase.getReference(fbStatus);
                 DatabaseReference mDbRef4= mDatabase.getReference("admins/"+user+"/sharecount");
 
                 mDbRef1.setValue(chittyName);
                 mDbRef2.setValue(chittyDate);
                 mDbRef3.setValue(chittyPaymentDate);
+                mDbRef5.setValue("active");
                 mDbRef4.setValue(num);
 
                 // Toast.makeText(getApplicationContext(), "Yes button Clicked", Toast.LENGTH_LONG).show();
@@ -253,7 +260,7 @@ public class AdminActivity extends AppCompatActivity {
         editor.putString("password","0" );
         editor.commit();
 
-        Intent login=new Intent(AdminActivity.this,Login.class);
+        Intent login=new Intent(AdminActivity.this,AdminLogin.class);
         finish();
         startActivity(login);
         System.exit(0);
