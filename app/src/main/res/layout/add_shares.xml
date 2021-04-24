@@ -29,18 +29,18 @@
                     android:layout_width="153dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:text="Share Name"
+                    android:text="Share Profit"
                     android:textSize="21dp"
                     android:paddingRight="20dp"
                     tools:layout_editor_absoluteX="26dp"
                     tools:layout_editor_absoluteY="15dp" />
 
                 <EditText
-                    android:id="@+id/sharenameEditText"
+                    android:id="@+id/shareProfitEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Share Name"
+                    android:hint="In %"
                     android:inputType="textPersonName"
                     android:scrollbarAlwaysDrawHorizontalTrack="true"
                     app:layout_constraintEnd_toEndOf="parent" />

@@ -49,8 +49,8 @@ public class AdminActivity extends AppCompatActivity {
     DatabaseReference getRef1;
     String sharenameEditText,sharedateEditText,shareamountEditText;
     String numOfShares;
-    EditText sharename,sharedate,shareamount;
-    String getShareName;
+    EditText shareProfit,sharedate,shareamount;
+    String getShareName,getCurrentNum;
     String user = null;
 
     public TextView sentText(Context context, String text){
@@ -77,7 +77,7 @@ public class AdminActivity extends AppCompatActivity {
         button.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         button.setTextColor(Color.rgb(255, 255, 255));
         button.setText(getShareName);
-       // button.setTag(numOfChitty);
+        button.setTag(getCurrentNum);
         button.setBackgroundResource(R.drawable.blackbutton);
         button.setGravity(Gravity.CENTER_VERTICAL);
         lparams.width=lparams.MATCH_PARENT;
@@ -92,7 +92,7 @@ public class AdminActivity extends AppCompatActivity {
                 //       Intent i=new Intent(ctx.getApplicationContext(),Test.class);
 //                   .startActivity(i);
                 String sendingID=button.getText().toString();
-                String sendingShareID="admins/"+user+"/shares/"+ button.getTag().toString();
+                String sendingShareID="shares/"+button.getTag().toString();
                 Toast.makeText(context,button.getTag().toString(), Toast.LENGTH_SHORT).show();
                 Intent i=new Intent(AdminActivity.this,AmountDetails.class);
                 Bundle bundle=new Bundle();
@@ -122,11 +122,11 @@ public class AdminActivity extends AppCompatActivity {
             //  Toast.makeText(MainActivity.this,user, Toast.LENGTH_SHORT).show();
         }
 
-        getRef1 = FirebaseDatabase.getInstance().getReference("admins"+"/"+user+"/sharecount");
+        getRef1 = FirebaseDatabase.getInstance().getReference("shareCount");
         addShareButton=(Button)findViewById(R.id.addShareButton);
         mLayout=(GridLayout) findViewById(R.id.mylayout);
 
-        DatabaseReference fb_to_read = FirebaseDatabase.getInstance().getReference("admins/"+user+"/shares");
+        DatabaseReference fb_to_read = FirebaseDatabase.getInstance().getReference("shares");
 
         fb_to_read.addValueEventListener(new ValueEventListener() {
             @Override
@@ -145,13 +145,18 @@ public class AdminActivity extends AppCompatActivity {
                     //                mLayout.addView(dmv.slnoTextVIew(getApplicationContext(),"data"),i);
                     //               mLayout.addView(dmv.chittalIDTextView(getApplicationContext(), "f"),i+1);
                     //                mLayout.addView(dmv.nameTextVIew(getApplicationContext(),data),i);
-                    mLayout.addView(sentText(getApplicationContext(),data),i);
-                    getShareName=snapshot.child(data).child("name").getValue(String.class);
-                    String getShareStatus=snapshot.child(data).child("status").getValue(String.class);
-                    if(getShareStatus.equals("active")){
+
+
+                    getShareName=snapshot.child(data).child("shareAmount").getValue(String.class);
+                    getCurrentNum=data;
+                    String getShareId=snapshot.child(data).child("adminId").getValue(String.class);
+                   //Toast.makeText(context, "hy", Toast.LENGTH_SHORT).show();
+                    if(getShareId.equals(user)){
+                        mLayout.addView(sentText(getApplicationContext(),data),i);
                         mLayout.addView(activeSharesButton(getApplicationContext()),i+1);
                         i=i+2;
 
+//                       // Toast.makeText(context, "hy", Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -174,7 +179,7 @@ public class AdminActivity extends AppCompatActivity {
     {
 
 
-
+        getRef1 = FirebaseDatabase.getInstance().getReference("shareCount");
         getRef1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -195,27 +200,30 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                sharename=(EditText)dialoglayout.findViewById(R.id.sharenameEditText);
+                shareProfit=(EditText)dialoglayout.findViewById(R.id.shareProfitEditText);
                 sharedate=(EditText)dialoglayout.findViewById(R.id.sharedateEditText);
                 shareamount=(EditText)dialoglayout.findViewById(R.id.shareamountEditText);
 
-                String chittyName=sharename.getText().toString();
+                String shareProfitPercentage=shareProfit.getText().toString();
                 String chittyDate=sharedate.getText().toString();
                 String chittyPaymentDate=shareamount.getText().toString();
 
-                String fbChittynum="admins/"+user+"/shares/"+num;
-                String fbChittyname=fbChittynum+"/name";
+                String fbChittynum="shares/"+num;
+                String fbChittyname=fbChittynum+"/adminId";
+                String shareProfitPath=fbChittynum+"/profitPercentage";
                 String fbdate=fbChittynum +"/date";
                 String fbStatus=fbChittynum+"/status";
-                String fbpaymentdate=fbChittynum +"/shareamount";
+                String fbpaymentdate=fbChittynum +"/shareAmount";
 
                 DatabaseReference mDbRef1 = mDatabase.getReference(fbChittyname);
+                DatabaseReference mDbRef6 = mDatabase.getReference(shareProfitPath);
                 DatabaseReference mDbRef2 = mDatabase.getReference(fbdate);
                 DatabaseReference mDbRef3= mDatabase.getReference(fbpaymentdate);
                 DatabaseReference mDbRef5= mDatabase.getReference(fbStatus);
-                DatabaseReference mDbRef4= mDatabase.getReference("admins/"+user+"/sharecount");
+                DatabaseReference mDbRef4= mDatabase.getReference("shareCount");
 
-                mDbRef1.setValue(chittyName);
+                mDbRef1.setValue(user);
+                mDbRef6.setValue(shareProfitPercentage);
                 mDbRef2.setValue(chittyDate);
                 mDbRef3.setValue(chittyPaymentDate);
                 mDbRef5.setValue("active");
