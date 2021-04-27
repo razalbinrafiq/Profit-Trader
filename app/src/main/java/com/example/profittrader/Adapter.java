@@ -1,10 +1,14 @@
 package com.example.profittrader;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ListAdapter;
@@ -33,8 +37,27 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         String name=userList.get(position).getNameTextView();
         String amount=userList.get(position).getAmountTextView();
         String date=userList.get(position).getDateTextView();
+        String id=userList.get(position).getIdTextView();
+        String number=userList.get(position).getNumberTextView();
 
-        holder.setData(resource,name,amount,date);
+        holder.setData(resource,name,amount,date,id,number);
+       // holder.nameTextView.setBackgroundColor(255);
+
+        if(Integer.parseInt(number.toString())%2==0)
+            holder.itemView.setBackgroundColor(Color.parseColor("#CDCFD5"));
+       else
+            holder.itemView.setBackgroundColor(Color.parseColor("#838795"));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //holder.nameTextView.setText("UI");
+                Context u=holder.itemView.getContext();
+//                Intent iu=new Intent(u,UserDetails.class);
+//                u.startActivity(iu);
+                Toast.makeText(u, holder.numberTextView.getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
     }
@@ -50,6 +73,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         private TextView nameTextView;
         private TextView amountTextView;
         private TextView dateTextView;
+        private TextView idTextView;
+        private TextView numberTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,15 +83,19 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             nameTextView=itemView.findViewById(R.id.nameTextView);
             amountTextView=itemView.findViewById(R.id.amountTextView);
             dateTextView=itemView.findViewById(R.id.dateTextView);
+            idTextView=itemView.findViewById(R.id.idTextView);
+            numberTextView=itemView.findViewById(R.id.numberTextView);
 
         }
 
-        public void setData(int resource, String name, String amount, String date) {
+        public void setData(int resource, String name, String amount, String date, String id, String number) {
 
             imageView.setImageResource(resource);
             nameTextView.setText(name);
             amountTextView.setText(amount);
             dateTextView.setText(date);
+            idTextView.setText(id);
+            numberTextView.setText(number);
         }
     }
 }

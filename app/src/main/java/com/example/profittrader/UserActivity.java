@@ -45,7 +45,7 @@ public class UserActivity extends AppCompatActivity {
     private GridLayout mLayout;
     Button addChittyButton,test;
     DynamicViews dmv;
-    int i=2;
+    int i=1;
     int num=1;
     int count;
     Context context;
@@ -55,7 +55,7 @@ public class UserActivity extends AppCompatActivity {
     String chittynameEditText,chittydateEditText,chittyamountEditText;
     String numOfChitty;
     EditText chittyname,chittydate,chittyamount;
-    String getShareName, getShareAmount, getShareDate;
+    String getShareName, getShareAmount, getShareDate,getShareId;
     String user = null;
 
 //
@@ -132,7 +132,7 @@ public class UserActivity extends AppCompatActivity {
         mLayout=(GridLayout) findViewById(R.id.mylayout);
 
 
-         initData("1,","2","2,3");
+         initData("1,","2","2,3","4,","5");
       //  initRecyclerView();
 
 
@@ -154,7 +154,7 @@ public class UserActivity extends AppCompatActivity {
 
     }
 
-    private void initData(String name,String amount, String date) {
+    private void initData(String name,String amount, String date,String id, String number) {
 
 
         userList = new ArrayList<>();
@@ -183,7 +183,9 @@ public class UserActivity extends AppCompatActivity {
                     getShareName=snapshot.child(data).child("shopName").getValue(String.class);
                     getShareAmount=snapshot.child(data).child("shareAmount").getValue(String.class);
                     getShareDate="Valid till "+ snapshot.child(data).child("date").getValue(String.class);
-                    userList.add(new ModelClass(R.drawable.logo,getShareName,getShareAmount, getShareDate));
+                    getShareId=snapshot.child(data).child("adminId").getValue(String.class);
+                    i++;
+                    userList.add(new ModelClass(R.drawable.logo,getShareName,getShareAmount, getShareDate,getShareId,String.valueOf(i)));
 
 
 //                    userList = new ArrayList<>();

@@ -8,13 +8,17 @@ public class ModelClass {
     private String nameTextView;
     private String amountTextView;
     private String dateTextView;
+    private String idTextView;
+    private String numberTextView;
 
-    ModelClass(int imageView1, String nameTextView,String amountTextView,String dateTextView){
+    ModelClass(int imageView1, String nameTextView,String amountTextView,String dateTextView, String idTextView, String numberTextView){
 
         this.imageView1=imageView1;
         this.nameTextView=nameTextView;
         this.amountTextView=amountTextView;
         this.dateTextView=dateTextView;
+        this.idTextView=idTextView;
+        this.numberTextView=numberTextView;
 
     }
 
@@ -33,4 +37,8 @@ public class ModelClass {
     public String getDateTextView() {
         return dateTextView;
     }
+
+    public String getIdTextView() { return idTextView; }
+
+    public String getNumberTextView() { return numberTextView; }
 }
