@@ -46,12 +46,13 @@ public class AdminActivity extends AppCompatActivity {
     Context context;
     Button button;
     FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
-    DatabaseReference getRef1;
+    DatabaseReference getRef1,getRef2;
     String sharenameEditText,sharedateEditText,shareamountEditText;
     String numOfShares;
     EditText shareProfit,sharedate,shareamount;
     String getShareName,getCurrentNum;
     String user = null;
+    String nameOfShop = null;
 
     public TextView sentText(Context context, String text){
         final ViewGroup.LayoutParams lparams= new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -122,7 +123,26 @@ public class AdminActivity extends AppCompatActivity {
             //  Toast.makeText(MainActivity.this,user, Toast.LENGTH_SHORT).show();
         }
 
+        getRef2 = FirebaseDatabase.getInstance().getReference("admins/"+user+"/userDetails/name");
+
+        getRef2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+                nameOfShop=snapshot.getValue().toString();
+                Toast.makeText(AdminActivity.this, nameOfShop, Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         getRef1 = FirebaseDatabase.getInstance().getReference("shareCount");
+
         addShareButton=(Button)findViewById(R.id.addShareButton);
         mLayout=(GridLayout) findViewById(R.id.mylayout);
 
@@ -210,6 +230,7 @@ public class AdminActivity extends AppCompatActivity {
 
                 String fbChittynum="shares/"+num;
                 String fbChittyname=fbChittynum+"/adminId";
+                String fbShopName=fbChittynum+"/shopName";
                 String shareProfitPath=fbChittynum+"/profitPercentage";
                 String fbdate=fbChittynum +"/date";
                 String fbStatus=fbChittynum+"/status";
@@ -217,12 +238,14 @@ public class AdminActivity extends AppCompatActivity {
 
                 DatabaseReference mDbRef1 = mDatabase.getReference(fbChittyname);
                 DatabaseReference mDbRef6 = mDatabase.getReference(shareProfitPath);
+                DatabaseReference mDbRef7 = mDatabase.getReference(fbShopName);
                 DatabaseReference mDbRef2 = mDatabase.getReference(fbdate);
                 DatabaseReference mDbRef3= mDatabase.getReference(fbpaymentdate);
                 DatabaseReference mDbRef5= mDatabase.getReference(fbStatus);
                 DatabaseReference mDbRef4= mDatabase.getReference("shareCount");
 
                 mDbRef1.setValue(user);
+                mDbRef7.setValue(nameOfShop);
                 mDbRef6.setValue(shareProfitPercentage);
                 mDbRef2.setValue(chittyDate);
                 mDbRef3.setValue(chittyPaymentDate);

@@ -55,7 +55,7 @@ public class UserActivity extends AppCompatActivity {
     String chittynameEditText,chittydateEditText,chittyamountEditText;
     String numOfChitty;
     EditText chittyname,chittydate,chittyamount;
-    String getChittyName;
+    String getShareName, getShareAmount, getShareDate;
     String user = null;
 
 //
@@ -132,42 +132,12 @@ public class UserActivity extends AppCompatActivity {
         mLayout=(GridLayout) findViewById(R.id.mylayout);
 
 
-        initData();
-        initRecyclerView();
+         initData("1,","2","2,3");
+      //  initRecyclerView();
 
 
-        DatabaseReference fb_to_read = FirebaseDatabase.getInstance().getReference("shares");
-
-        fb_to_read.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                List<String> list=new ArrayList<String>();
-                for (DataSnapshot dsp : snapshot.getChildren()){
-                    list.add(String.valueOf(dsp.getKey()));
-                }
-
-                for(final String data:list){
-                    dmv=new DynamicViews(context);
-
-                    String status=snapshot.child(data).child("status").getValue(String.class);
 
 
-                   // mLayout.addView(sentText(getApplicationContext(),data),i);
-                    getChittyName=snapshot.child(data).child("shareAmount").getValue(String.class);
-                  //  mLayout.addView(chittymemberButton(getApplicationContext()),i+1);
-                    i=i+2;
-
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
 
     }
@@ -184,11 +154,78 @@ public class UserActivity extends AppCompatActivity {
 
     }
 
-    private void initData() {
+    private void initData(String name,String amount, String date) {
 
 
         userList = new ArrayList<>();
-        userList.add(new ModelClass(R.drawable.logo,"Na","Am", "Da"));
+
+
+
+        DatabaseReference fb_to_read = FirebaseDatabase.getInstance().getReference("shares");
+
+        fb_to_read.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                List<String> list=new ArrayList<String>();
+                for (DataSnapshot dsp : snapshot.getChildren()){
+                    list.add(String.valueOf(dsp.getKey()));
+                }
+
+                for(final String data:list){
+
+                    //  dmv=new DynamicViews(context);
+
+                    // String status=snapshot.child(data).child("status").getValue(String.class);
+
+
+                    // mLayout.addView(sentText(getApplicationContext(),data),i);
+                    getShareName=snapshot.child(data).child("shopName").getValue(String.class);
+                    getShareAmount=snapshot.child(data).child("shareAmount").getValue(String.class);
+                    getShareDate="Valid till "+ snapshot.child(data).child("date").getValue(String.class);
+                    userList.add(new ModelClass(R.drawable.logo,getShareName,getShareAmount, getShareDate));
+
+
+//                    userList = new ArrayList<>();
+//                    userList.add(new ModelClass(R.drawable.logo,getChittyName,"Am", "Da"));
+
+                    Toast.makeText(UserActivity.this,getShareAmount, Toast.LENGTH_SHORT).show();
+
+//                    userList = new ArrayList<>();
+//                    userList.add(new ModelClass(R.drawable.logo,getShareName,getShareAmount, getShareDate));
+//
+//                    recyclerView=findViewById(R.id.recyclerView);
+//                    layoutManager=new LinearLayoutManager(UserActivity.this);
+//                    layoutManager.setOrientation(RecyclerView.VERTICAL);
+//                    recyclerView.setLayoutManager(layoutManager);
+//                    adapter=new Adapter(userList);
+//                    recyclerView.setAdapter(adapter);
+//                    adapter.notifyDataSetChanged();
+//
+
+
+                    //  mLayout.addView(chittymemberButton(getApplicationContext()),i+1);
+                    // i=i+2;
+
+                }
+
+                initRecyclerView();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+//for(int i=1;i<=3;i++){
+//    userList.add(new ModelClass(R.drawable.logo,"name","amount", "date"));
+//}
+
+
+       //userList.add(new ModelClass(R.drawable.logo,getShareName.toString(),"amount1", "date1"));
 
     }
 
@@ -210,11 +247,13 @@ public class UserActivity extends AppCompatActivity {
 
     public void profiles()
     {
-        String sendingprofile="users/"+user+"/userDetails";
+//        String sendingprofile="users/"+user+"/userDetails";
+//
+//        Intent profile=new Intent(UserActivity.this,UserDetails.class);
+//        profile.putExtra("key",sendingprofile);
+//        startActivity(profile);
 
-        Intent profile=new Intent(UserActivity.this,UserDetails.class);
-        profile.putExtra("key",sendingprofile);
-        startActivity(profile);
+
 
     }
 
