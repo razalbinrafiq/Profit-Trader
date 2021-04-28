@@ -132,7 +132,7 @@ public class UserActivity extends AppCompatActivity {
         mLayout=(GridLayout) findViewById(R.id.mylayout);
 
 
-         initData("1,","2","2,3","4,","5");
+         initData("1,","2","2,3","4,","5","67");
       //  initRecyclerView();
 
 
@@ -154,7 +154,7 @@ public class UserActivity extends AppCompatActivity {
 
     }
 
-    private void initData(String name,String amount, String date,String id, String number) {
+    private void initData(String name,String amount, String date,String id,String shareId, String number) {
 
 
         userList = new ArrayList<>();
@@ -180,18 +180,18 @@ public class UserActivity extends AppCompatActivity {
 
 
                     // mLayout.addView(sentText(getApplicationContext(),data),i);
-                    getShareName=snapshot.child(data).child("shopName").getValue(String.class);
+                    getShareName=snapshot.child(data).child("shopName").getValue(String.class).toUpperCase();
                     getShareAmount=snapshot.child(data).child("shareAmount").getValue(String.class);
                     getShareDate="Valid till "+ snapshot.child(data).child("date").getValue(String.class);
                     getShareId=snapshot.child(data).child("adminId").getValue(String.class);
                     i++;
-                    userList.add(new ModelClass(R.drawable.logo,getShareName,getShareAmount, getShareDate,getShareId,String.valueOf(i)));
+                    userList.add(new ModelClass(R.drawable.logo,getShareName,getShareAmount, getShareDate,getShareId,data.toString(),String.valueOf(i)));
 
 
 //                    userList = new ArrayList<>();
 //                    userList.add(new ModelClass(R.drawable.logo,getChittyName,"Am", "Da"));
 
-                    Toast.makeText(UserActivity.this,getShareAmount, Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(UserActivity.this,getShareAmount, Toast.LENGTH_SHORT).show();
 
 //                    userList = new ArrayList<>();
 //                    userList.add(new ModelClass(R.drawable.logo,getShareName,getShareAmount, getShareDate));

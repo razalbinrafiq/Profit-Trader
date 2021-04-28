@@ -38,9 +38,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         String amount=userList.get(position).getAmountTextView();
         String date=userList.get(position).getDateTextView();
         String id=userList.get(position).getIdTextView();
+        String shareId=userList.get(position).getShareIdTextView();
         String number=userList.get(position).getNumberTextView();
 
-        holder.setData(resource,name,amount,date,id,number);
+        holder.setData(resource,name,amount,date,id,shareId,number);
        // holder.nameTextView.setBackgroundColor(255);
 
         if(Integer.parseInt(number.toString())%2==0)
@@ -55,7 +56,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 Context u=holder.itemView.getContext();
 //                Intent iu=new Intent(u,UserDetails.class);
 //                u.startActivity(iu);
-                Toast.makeText(u, holder.numberTextView.getText(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(u, holder.shareIdTextView.getText(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -74,6 +75,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         private TextView amountTextView;
         private TextView dateTextView;
         private TextView idTextView;
+        private TextView shareIdTextView;
         private TextView numberTextView;
 
         public ViewHolder(@NonNull View itemView) {
@@ -84,17 +86,19 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             amountTextView=itemView.findViewById(R.id.amountTextView);
             dateTextView=itemView.findViewById(R.id.dateTextView);
             idTextView=itemView.findViewById(R.id.idTextView);
+            shareIdTextView=itemView.findViewById(R.id.shareIdTextView);
             numberTextView=itemView.findViewById(R.id.numberTextView);
 
         }
 
-        public void setData(int resource, String name, String amount, String date, String id, String number) {
+        public void setData(int resource, String name, String amount, String date, String id,String shareId, String number) {
 
             imageView.setImageResource(resource);
             nameTextView.setText(name);
             amountTextView.setText(amount);
             dateTextView.setText(date);
             idTextView.setText(id);
+            shareIdTextView.setText(shareId);
             numberTextView.setText(number);
         }
     }
