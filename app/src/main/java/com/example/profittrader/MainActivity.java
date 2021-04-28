@@ -125,8 +125,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent forgotIntent=new Intent(MainActivity.this,ForgotPassword.class);
-                //forgotIntent.putExtra("user_id",user_id);
-                //finish();
+                forgotIntent.putExtra("user_id",user_id);
+                finish();
                 startActivity(forgotIntent);
 
             }
