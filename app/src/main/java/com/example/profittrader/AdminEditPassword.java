@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class EditPassword extends AppCompatActivity {
+public class AdminEditPassword extends AppCompatActivity {
 
     String user,password,confirmpassword;
     EditText password1,password2;
@@ -21,7 +21,7 @@ public class EditPassword extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_password);
+        setContentView(R.layout.activity_admin_edit_password);
 
         Bundle forgetPassword=getIntent().getExtras();
         if(forgetPassword!=null){
@@ -41,16 +41,16 @@ public class EditPassword extends AppCompatActivity {
 
                 if(password.equals(confirmpassword)) {
                     FirebaseDatabase regDatabase = FirebaseDatabase.getInstance();
-                    String path = "users/" + user + "/userDetails/password1";
+                    String path = "admins/" + user + "/userDetails/password1";
                     DatabaseReference passwordReference = regDatabase.getReference(path );
                     passwordReference.setValue(password);
-                    Intent toLoginPage=new Intent(EditPassword.this,Login.class);
+                    Intent toLoginPage=new Intent(AdminEditPassword.this,Login.class);
                     startActivity(toLoginPage);
                     finish();
                 }
                 else
                 {
-                    Toast.makeText(EditPassword.this, "NOT EQUAL", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminEditPassword.this, "NOT EQUAL", Toast.LENGTH_SHORT).show();
                 }
             }
         });

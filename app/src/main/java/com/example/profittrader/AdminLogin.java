@@ -120,5 +120,17 @@ public class AdminLogin extends AppCompatActivity {
         });
 
 
+        forgotpasswordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent forgotIntent=new Intent(AdminLogin.this,AdminForgotPassword.class);
+                forgotIntent.putExtra("user_id",user_id);
+                finish();
+                startActivity(forgotIntent);
+
+            }
+        });
+
+
     }
 }
