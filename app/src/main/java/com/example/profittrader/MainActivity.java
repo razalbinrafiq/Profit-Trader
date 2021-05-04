@@ -70,10 +70,11 @@ public class MainActivity extends AppCompatActivity {
                                         //                       Toast.makeText(LoginPage.this,pass, Toast.LENGTH_SHORT).show();
                                         if(pass.equals(password.toString())){
                                             //Toast.makeText(LoginPage.this,"login", Toast.LENGTH_SHORT).show();
-                                            SharedPreferences loginUserDetails = getSharedPreferences("logUserDetails", MODE_PRIVATE);
-                                            SharedPreferences.Editor editor = loginUserDetails.edit();
-                                            editor.putString("userid",user_id );
-                                            editor.putString("userpassword",password );
+                                            SharedPreferences loginDetails = getSharedPreferences("loginDetails", MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = loginDetails.edit();
+                                            editor.putString("id",user_id );
+                                            editor.putString("password",password );
+                                            editor.putString("mode","user" );
                                             editor.commit();
 
                                             Intent login=new Intent(MainActivity.this,UserActivity.class);

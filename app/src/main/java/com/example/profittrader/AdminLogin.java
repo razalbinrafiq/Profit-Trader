@@ -69,10 +69,11 @@ public class AdminLogin extends AppCompatActivity {
                                         //                       Toast.makeText(LoginPage.this,pass, Toast.LENGTH_SHORT).show();
                                         if(pass.equals(password.toString())){
                                             //Toast.makeText(LoginPage.this,"login", Toast.LENGTH_SHORT).show();
-                                            SharedPreferences loginAdminDetails = getSharedPreferences("logAdminDetails", MODE_PRIVATE);
-                                            SharedPreferences.Editor editor = loginAdminDetails.edit();
-                                            editor.putString("adminid",user_id );
-                                            editor.putString("adminpassword",password );
+                                            SharedPreferences loginDetails = getSharedPreferences("loginDetails", MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = loginDetails.edit();
+                                            editor.putString("id",user_id );
+                                            editor.putString("password",password );
+                                            editor.putString("mode","admin" );
                                             editor.commit();
 
                                             Intent login=new Intent(AdminLogin.this,AdminActivity.class);

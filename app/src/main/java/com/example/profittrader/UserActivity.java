@@ -234,10 +234,11 @@ public class UserActivity extends AppCompatActivity {
 
     public void logout(){
 
-        SharedPreferences loginDetails = getSharedPreferences("logDetails", MODE_PRIVATE);
+        SharedPreferences loginDetails = getSharedPreferences("loginDetails", MODE_PRIVATE);
         SharedPreferences.Editor editor = loginDetails.edit();
         editor.putString("id","0" );
         editor.putString("password","0" );
+        editor.putString("mode","0" );
         editor.commit();
 
         Intent login=new Intent(UserActivity.this,Login.class);

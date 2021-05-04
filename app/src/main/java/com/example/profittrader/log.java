@@ -30,7 +30,7 @@ public class log extends AppCompatActivity {
     //ImageView im;
 
 
-    String check_ID, check_Password,user_id,password,getCheck_ID;
+    String check_ID, check_Password,check_Mode, user_id,password,getCheck_ID;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,69 +53,141 @@ public class log extends AppCompatActivity {
             public void run() {
 
 
-                SharedPreferences lDetails =  getSharedPreferences("logDetails", MODE_PRIVATE);
-                check_ID = lDetails.getString("id","0");
-                check_Password = lDetails.getString("password","0");
+                SharedPreferences loginDetails =  getSharedPreferences("loginDetails", MODE_PRIVATE);
+                check_ID = loginDetails.getString("id","0");
+                check_Password = loginDetails.getString("password","0");
+                check_Mode = loginDetails.getString("mode","0");
 
 
 
                 if(check_ID!="0"){
 
                     user_id=check_ID;
-                    DatabaseReference fb_to_read = FirebaseDatabase.getInstance().getReference("users");
-                    fb_to_read.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            List<String> list=new ArrayList<String>();
-                            for (DataSnapshot dsp : snapshot.getChildren()){
-                                list.add(String.valueOf(dsp.getKey()));
-                            }
-                            for(final String data:list){
-//                        Toast.makeText(LoginPage.this, data, Toast.LENGTH_SHORT).show();
-                                if(data.equals(user_id.toString()))
-                                {
-                                    password=check_Password;
-                                    DatabaseReference fb_read = FirebaseDatabase.getInstance().getReference("users"+"/"+user_id+"/"+"userDetails"+"/"+"password1");
-                                    fb_read.addValueEventListener(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                            String pass=snapshot.getValue(String.class);
-//                                    Toast.makeText(LoginPage.this,pass, Toast.LENGTH_SHORT).show();
-                                            if(pass.equals(password.toString())){
-                                                //Toast.makeText(LoginPage.this,"login", Toast.LENGTH_SHORT).show();
-                                                SharedPreferences loginDetails = getSharedPreferences("logDetails", MODE_PRIVATE);
-                                                SharedPreferences.Editor editor = loginDetails.edit();
-                                                editor.putString("id",user_id );
-                                                editor.putString("password",password );
-                                                editor.commit();
+                    if(check_Mode.equals("user"))
+                    {
+                        DatabaseReference fb_to_read = FirebaseDatabase.getInstance().getReference("users");
 
-                                                Intent login=new Intent(com.example.profittrader.log.this,MainActivity.class);
-                                                login.putExtra("user_id",user_id);
-                                                startActivity(login);
-                                                finish();
-
-                                            }
-                                            else
-                                            {
-                                                Toast.makeText(com.example.profittrader.log.this, "WRONG USERNAME OR PASSWORD", Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                        }
-                                    });
+                        fb_to_read.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                List<String> list=new ArrayList<String>();
+                                for (DataSnapshot dsp : snapshot.getChildren()){
+                                    list.add(String.valueOf(dsp.getKey()));
                                 }
-                                // Toast.makeText(LoginPage.this, "WRONG USERNAME OR PASSWORD", Toast.LENGTH_SHORT).show();
+                                for(final String data:list){
+//                        Toast.makeText(LoginPage.this, data, Toast.LENGTH_SHORT).show();
+                                    if(data.equals(user_id.toString()))
+                                    {
+                                        password=check_Password;
+                                        DatabaseReference fb_read = FirebaseDatabase.getInstance().getReference("users"+"/"+user_id+"/"+"userDetails"+"/"+"password1");
+                                        fb_read.addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                String pass=snapshot.getValue(String.class);
+//                                    Toast.makeText(LoginPage.this,pass, Toast.LENGTH_SHORT).show();
+                                                if(pass.equals(password.toString())){
+                                                    //Toast.makeText(LoginPage.this,"login", Toast.LENGTH_SHORT).show();
+                                                    SharedPreferences loginDetails = getSharedPreferences("loginDetails", MODE_PRIVATE);
+                                                    SharedPreferences.Editor editor = loginDetails.edit();
+                                                    editor.putString("id",user_id );
+                                                    editor.putString("password",password );
+                                                    editor.putString("mode","user" );
+                                                    editor.commit();
+
+                                                    Intent login=new Intent(com.example.profittrader.log.this,UserActivity.class);
+                                                    login.putExtra("user_id",user_id);
+                                                    startActivity(login);
+                                                    finish();
+
+                                                }
+                                                else
+                                                {
+                                                    Toast.makeText(com.example.profittrader.log.this, "WRONG USERNAME OR PASSWORD", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
+                                    }
+                                    // Toast.makeText(LoginPage.this, "WRONG USERNAME OR PASSWORD", Toast.LENGTH_SHORT).show();
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                        }
-                    });
+                            }
+                        });
+
+                    }
+
+                    if(check_Mode.equals("admin"))
+                    {
+                        DatabaseReference fb_to_read = FirebaseDatabase.getInstance().getReference("admins");
+
+                        fb_to_read.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                List<String> list=new ArrayList<String>();
+                                for (DataSnapshot dsp : snapshot.getChildren()){
+                                    list.add(String.valueOf(dsp.getKey()));
+                                }
+                                for(final String data:list){
+//                        Toast.makeText(LoginPage.this, data, Toast.LENGTH_SHORT).show();
+                                    if(data.equals(user_id.toString()))
+                                    {
+                                        password=check_Password;
+                                        DatabaseReference fb_read = FirebaseDatabase.getInstance().getReference("admins"+"/"+user_id+"/"+"userDetails"+"/"+"password1");
+                                        fb_read.addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                String pass=snapshot.getValue(String.class);
+//                                    Toast.makeText(LoginPage.this,pass, Toast.LENGTH_SHORT).show();
+                                                if(pass.equals(password.toString())){
+                                                    //Toast.makeText(LoginPage.this,"login", Toast.LENGTH_SHORT).show();
+                                                    SharedPreferences loginDetails = getSharedPreferences("loginDetails", MODE_PRIVATE);
+                                                    SharedPreferences.Editor editor = loginDetails.edit();
+                                                    editor.putString("id",user_id );
+                                                    editor.putString("password",password );
+                                                    editor.putString("mode","admin" );
+                                                    editor.commit();
+
+                                                    Intent login=new Intent(com.example.profittrader.log.this,AdminActivity.class);
+                                                    login.putExtra("user_id",user_id);
+                                                    startActivity(login);
+                                                    finish();
+
+                                                }
+                                                else
+                                                {
+                                                    Toast.makeText(com.example.profittrader.log.this, "WRONG USERNAME OR PASSWORD", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
+                                    }
+                                    // Toast.makeText(LoginPage.this, "WRONG USERNAME OR PASSWORD", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+
+                    }
+
+
+
                 }
                 else
                 {
