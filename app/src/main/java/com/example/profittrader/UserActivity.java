@@ -23,6 +23,7 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +41,9 @@ public class UserActivity extends AppCompatActivity {
     LinearLayoutManager layoutManager;
     List<ModelClass> userList;
     Adapter adapter;
+
+
+    MeowBottomNavigation bottomNavigation;
 
 
     private GridLayout mLayout;
@@ -126,6 +130,12 @@ public class UserActivity extends AppCompatActivity {
             user = login.getString("user_id");
             //  Toast.makeText(MainActivity.this,user, Toast.LENGTH_SHORT).show();
         }
+
+
+        bottomNavigation =findViewById(R.id.bottom_navigation);
+        bottomNavigation.add(new MeowBottomNavigation.Model(1,R.drawable.ic_profile));
+        bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.ic_home));
+        bottomNavigation.add(new MeowBottomNavigation.Model(3,R.drawable.ic_wallet));
 
         getRef1 = FirebaseDatabase.getInstance().getReference("shares");
         //addChittyButton=(Button)findViewById(R.id.addChittyButton);
