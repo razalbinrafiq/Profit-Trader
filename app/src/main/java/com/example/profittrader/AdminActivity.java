@@ -257,8 +257,11 @@ public class AdminActivity extends AppCompatActivity {
                 dialog.dismiss();
 //               finish();
 //               onStart();
-                finish();
 
+                Intent iu=new Intent(AdminActivity.this,AdminActivity.class);
+                iu.putExtra("user_id",user);
+                finish();
+                startActivity(iu);
                 //System.exit(0);
 
             }
@@ -292,7 +295,7 @@ public class AdminActivity extends AppCompatActivity {
         editor.putString("mode","0" );
         editor.commit();
 
-        Intent login=new Intent(AdminActivity.this,AdminLogin.class);
+        Intent login=new Intent(AdminActivity.this,Login.class);
         finish();
         startActivity(login);
         System.exit(0);

@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,7 +44,7 @@ public class UserActivity extends AppCompatActivity {
     Adapter adapter;
 
 
-    MeowBottomNavigation bottomNavigation;
+//    MeowBottomNavigation bottomNavigation;
 
 
     private GridLayout mLayout;
@@ -131,11 +132,40 @@ public class UserActivity extends AppCompatActivity {
             //  Toast.makeText(MainActivity.this,user, Toast.LENGTH_SHORT).show();
         }
 
+//
+//        bottomNavigation =findViewById(R.id.bottom_navigation);
+//        bottomNavigation.add(new MeowBottomNavigation.Model(1,R.drawable.ic_profile));
+//        bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.ic_home));
+//        bottomNavigation.add(new MeowBottomNavigation.Model(3,R.drawable.ic_wallet));
 
-        bottomNavigation =findViewById(R.id.bottom_navigation);
-        bottomNavigation.add(new MeowBottomNavigation.Model(1,R.drawable.ic_profile));
-        bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.ic_home));
-        bottomNavigation.add(new MeowBottomNavigation.Model(3,R.drawable.ic_wallet));
+
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.home);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()){
+                    case R.id.profile:
+                        startActivity(new Intent(getApplicationContext(),UserProfile.class));
+                        overridePendingTransition(0,0);
+                        finish();
+                        return true;
+                    case R.id.home:
+                        return true;
+                    case R.id.wallet:
+                        startActivity(new Intent(getApplicationContext(),UserWallet.class));
+                        overridePendingTransition(0,0);
+                        finish();
+                        return true;
+                }
+                return false;
+            }
+        });
+
+
+
 
         getRef1 = FirebaseDatabase.getInstance().getReference("shares");
         //addChittyButton=(Button)findViewById(R.id.addChittyButton);
