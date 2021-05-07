@@ -230,27 +230,33 @@ public class AdminActivity extends AppCompatActivity {
 
                 String fbChittynum="shares/"+num;
                 String fbChittyname=fbChittynum+"/adminId";
-                String fbShopName=fbChittynum+"/shopName";
-                String shareProfitPath=fbChittynum+"/profitPercentage";
                 String fbdate=fbChittynum +"/date";
-                String fbStatus=fbChittynum+"/status";
                 String fbpaymentdate=fbChittynum +"/shareAmount";
+                String fbStatus=fbChittynum+"/status";
+                String shareProfitPath=fbChittynum+"/profitPercentage";
+                String fbShopName=fbChittynum+"/shopName";
+                String soldShareCount=fbChittynum+"/soldCount";
+                String soldShareSum=fbChittynum+"/soldSum";
 
                 DatabaseReference mDbRef1 = mDatabase.getReference(fbChittyname);
-                DatabaseReference mDbRef6 = mDatabase.getReference(shareProfitPath);
-                DatabaseReference mDbRef7 = mDatabase.getReference(fbShopName);
                 DatabaseReference mDbRef2 = mDatabase.getReference(fbdate);
                 DatabaseReference mDbRef3= mDatabase.getReference(fbpaymentdate);
-                DatabaseReference mDbRef5= mDatabase.getReference(fbStatus);
                 DatabaseReference mDbRef4= mDatabase.getReference("shareCount");
+                DatabaseReference mDbRef5= mDatabase.getReference(fbStatus);
+                DatabaseReference mDbRef6 = mDatabase.getReference(shareProfitPath);
+                DatabaseReference mDbRef7 = mDatabase.getReference(fbShopName);
+                DatabaseReference mDbRef8 = mDatabase.getReference(soldShareCount);
+                DatabaseReference mDbRef9 = mDatabase.getReference(soldShareSum);
 
                 mDbRef1.setValue(user);
-                mDbRef7.setValue(nameOfShop);
-                mDbRef6.setValue(shareProfitPercentage);
                 mDbRef2.setValue(chittyDate);
                 mDbRef3.setValue(chittyPaymentDate);
-                mDbRef5.setValue("active");
                 mDbRef4.setValue(num);
+                mDbRef5.setValue("active");
+                mDbRef6.setValue(shareProfitPercentage);
+                mDbRef7.setValue(nameOfShop);
+                mDbRef8.setValue("0");
+                mDbRef9.setValue("0");
 
                 // Toast.makeText(getApplicationContext(), "Yes button Clicked", Toast.LENGTH_LONG).show();
                 // Log.i("Code2care ", "Yes button Clicked!");
