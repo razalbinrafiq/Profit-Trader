@@ -14,7 +14,7 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:text="ADMIN EGISTRATION"
+        android:text="ADMIN REGISTRATION"
         android:gravity="center"
         />
 

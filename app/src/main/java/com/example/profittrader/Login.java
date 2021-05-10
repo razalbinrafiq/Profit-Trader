@@ -24,6 +24,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 Intent userlog=new Intent(Login.this,MainActivity.class);
                 startActivity(userlog);
+                finish();
             }
         });
         adminLoginButton.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +32,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 Intent userlog=new Intent(Login.this,AdminLogin.class);
                 startActivity(userlog);
+                finish();
             }
         });
 

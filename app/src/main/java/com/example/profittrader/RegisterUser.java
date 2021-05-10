@@ -93,7 +93,7 @@ public class RegisterUser extends AppCompatActivity {
                                 DatabaseReference email = mDatabase.getReference(emailid);
                                 DatabaseReference mno = mDatabase.getReference(num);
                                 DatabaseReference Passwordpath = mDatabase.getReference(passwordpath);
-                                DatabaseReference chittyCount = mDatabase.getReference( user_id + "/" + username + "/chittycount");
+                                DatabaseReference shareCount = mDatabase.getReference( user_id + "/" + username + "/sharesBoughtCount");
 
                                 //DatabaseReference passw2 = mDatabase.getReference(password2);
 
@@ -101,7 +101,7 @@ public class RegisterUser extends AppCompatActivity {
                                 email.setValue(mail);
                                 mno.setValue(mnumber);
                                 Passwordpath.setValue(password1);
-                                chittyCount.setValue(0);
+                                shareCount.setValue(0);
                                 // passw2.setValue(pass2);
                                 Intent d = new Intent(RegisterUser.this, MainActivity.class);
                                 startActivity(d);

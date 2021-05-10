@@ -237,6 +237,7 @@ public class AdminActivity extends AppCompatActivity {
                 String fbShopName=fbChittynum+"/shopName";
                 String soldShareCount=fbChittynum+"/soldCount";
                 String soldShareSum=fbChittynum+"/soldSum";
+                String redeemedShareSum=fbChittynum+"/redeemedSum";
 
                 DatabaseReference mDbRef1 = mDatabase.getReference(fbChittyname);
                 DatabaseReference mDbRef2 = mDatabase.getReference(fbdate);
@@ -247,6 +248,7 @@ public class AdminActivity extends AppCompatActivity {
                 DatabaseReference mDbRef7 = mDatabase.getReference(fbShopName);
                 DatabaseReference mDbRef8 = mDatabase.getReference(soldShareCount);
                 DatabaseReference mDbRef9 = mDatabase.getReference(soldShareSum);
+                DatabaseReference mDbRef10 = mDatabase.getReference(redeemedShareSum);
 
                 mDbRef1.setValue(user);
                 mDbRef2.setValue(chittyDate);
@@ -257,6 +259,7 @@ public class AdminActivity extends AppCompatActivity {
                 mDbRef7.setValue(nameOfShop);
                 mDbRef8.setValue("0");
                 mDbRef9.setValue("0");
+                mDbRef10.setValue("0");
 
                 // Toast.makeText(getApplicationContext(), "Yes button Clicked", Toast.LENGTH_LONG).show();
                 // Log.i("Code2care ", "Yes button Clicked!");
