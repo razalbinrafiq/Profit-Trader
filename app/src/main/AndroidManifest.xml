@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProfitTrader">
-        <activity android:name=".UserWallet"></activity>
+        <activity android:name=".BuyingShareSplashLayout"></activity>
+        <activity android:name=".UserWallet" />
         <activity android:name=".UserProfile" />
         <activity android:name=".AdminEditPassword" />
         <activity android:name=".AdminForgotPassword" />
@@ -33,6 +34,10 @@
         <activity android:name=".Login" />
         <activity android:name=".RegisterUser" />
         <activity android:name=".MainActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
