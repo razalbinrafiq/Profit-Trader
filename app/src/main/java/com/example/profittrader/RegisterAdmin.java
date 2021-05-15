@@ -87,12 +87,15 @@ public class RegisterAdmin extends AppCompatActivity {
                                 String emailid = details + "/" + "emailId";
                                 String num = details + "/" + "mobile";
                                 String passwordpath = details + "/" + "password1";
+                                String shareCount = user_id+"/"+username + "/" + "shareCount";
                                 //String password2=details+"/"+"password2";
 
                                 DatabaseReference Agentname = mDatabase.getReference(agentname);
                                 DatabaseReference email = mDatabase.getReference(emailid);
                                 DatabaseReference mno = mDatabase.getReference(num);
                                 DatabaseReference Passwordpath = mDatabase.getReference(passwordpath);
+                                DatabaseReference shareCountSetter = mDatabase.getReference(shareCount);
+
                                 //DatabaseReference chittyCount = mDatabase.getReference( user_id + "/" + username + "/chittycount");
 
                                 //DatabaseReference passw2 = mDatabase.getReference(password2);
@@ -101,6 +104,7 @@ public class RegisterAdmin extends AppCompatActivity {
                                 email.setValue(mail);
                                 mno.setValue(mnumber);
                                 Passwordpath.setValue(password1);
+                                shareCountSetter.setValue("0");
                                 //chittyCount.setValue(0);
                                 // passw2.setValue(pass2);
                                 Intent d = new Intent(RegisterAdmin.this, AdminLogin.class);
