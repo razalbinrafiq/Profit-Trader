@@ -9,8 +9,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="h2"
+        android:text="T O T A L"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/totalValueTextView"
         android:textSize="52dp">
+
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/totalValueTextView"
+        android:text="TOTAL PORTFOLIO VALUE"
+        android:layout_centerHorizontal="true"
+        android:textSize="25dp">
 
     </TextView>
 
