@@ -36,11 +36,16 @@ public class ShareDetails extends AppCompatActivity {
     String idOfShop,nameOfShop,availableOfShare,totalOfShare,soldOfShare,percentageOfShare;
     int intSoldOfSum,intPercentageOfShare,setSoldSum;
     int available,buyAmountInt,num,checkBuyAmountInt;
+    int buyAmountIntInAdmin;
+    int buyAmountIntInUser;
     String buyAmount;
     String getSoldCount;
     String fbUpdate,fbUpdateSoldCount,fbUpdateAmount,fbUpdateSoldSum,fbUpdateCountOfSharesBought,fbUpdateSharesBoughtSum,fbUpdateShopId,fbUpdateCustomerId;
+    String fbUpdateInAdmin,fbUpdateAmountInAdmin;
+    String fbUpdateInUser,fbUpdateAmountInUser;
     String idOfShare,getIdOfShop;
     String countOfSharesBought;
+    String countOfSharesBoughtInAdmin,countOfSharesBoughtInUser;
 
     String adminKey,getAdminSoldCount,adminUpdate;
     int adminNum;
@@ -168,12 +173,16 @@ public class ShareDetails extends AppCompatActivity {
                         available = ((Integer.parseInt(totalOfShare) - Integer.parseInt(soldOfShare)));
                         buyAmount = amountToBuy.getText().toString();
                         buyAmountInt = (Integer.parseInt(buyAmount));
+                        buyAmountIntInAdmin = (Integer.parseInt(buyAmount));
+                        buyAmountIntInUser = (Integer.parseInt(buyAmount));
                         getSoldCount = snapshot.child("soldCount").getValue(String.class);
                         num = Integer.parseInt(getSoldCount);
                         num += 1;
                         checkBuyAmountInt=Integer.parseInt(buyAmount);
 
                         countOfSharesBought = snapshot.child("soldShares").child(check_ID).child("amountSum").getValue(String.class);
+
+
 
 
                         intSoldOfSum = Integer.parseInt(soldOfShare);
@@ -187,15 +196,84 @@ public class ShareDetails extends AppCompatActivity {
                             buyAmountInt=buyAmountInt+ Integer.parseInt(snapshot.child("soldShares").child(check_ID).child("amountSum").getValue(String.class));
 
 
-                            Toast.makeText(ShareDetails.this, countOfSharesBought, Toast.LENGTH_SHORT).show();
+                         //   Toast.makeText(ShareDetails.this, countOfSharesBought, Toast.LENGTH_SHORT).show();
                         }
                         else {
 
 
 
 
-                            Toast.makeText(ShareDetails.this, "Null", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(ShareDetails.this, "Null", Toast.LENGTH_SHORT).show();
                         }
+
+
+
+                        DatabaseReference fb_to_read_admin = FirebaseDatabase.getInstance().getReference("admins/" + idOfShop);
+                        fb_to_read_admin.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot2) {
+
+                                List<String> list = new ArrayList<String>();
+                                for (DataSnapshot dsp : snapshot2.getChildren()) {
+                                    adminKey = snapshot2.getKey().toString();
+                                }
+
+                                countOfSharesBoughtInAdmin = snapshot2.child("soldShares").child(check_ID).child("amountSum").getValue(String.class);
+
+                                if(countOfSharesBoughtInAdmin!=null){
+
+                                    buyAmountIntInAdmin=buyAmountIntInAdmin+ Integer.parseInt(snapshot2.child("soldShares").child(check_ID).child("amountSum").getValue(String.class));
+
+
+                                    //   Toast.makeText(ShareDetails.this, countOfSharesBought, Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+
+
+                                    // Toast.makeText(ShareDetails.this, "Null", Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull  DatabaseError error) {
+
+                            }
+                        });
+
+
+                        DatabaseReference fb_to_read_user = FirebaseDatabase.getInstance().getReference("users/" + check_ID);
+                        fb_to_read_user.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot3) {
+
+                                List<String> list = new ArrayList<String>();
+                                for (DataSnapshot dsp : snapshot3.getChildren()) {
+                                    userKey = snapshot3.getKey().toString();
+                                }
+
+                                countOfSharesBoughtInUser = snapshot3.child("soldShares").child(idOfShop).child("amountSum").getValue(String.class);
+
+                                if(countOfSharesBoughtInUser!=null){
+
+                                    buyAmountIntInUser=buyAmountIntInUser+ Integer.parseInt(snapshot3.child("soldShares").child(idOfShop).child("amountSum").getValue(String.class));
+
+
+                                    //   Toast.makeText(ShareDetails.this, countOfSharesBought, Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+
+
+                                    // Toast.makeText(ShareDetails.this, "Null", Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull  DatabaseError error) {
+
+                            }
+                        });
 
 
 
@@ -224,16 +302,23 @@ public class ShareDetails extends AppCompatActivity {
                                 fbUpdateSoldCount = "shares/" + idOfShare + "/soldCount";
                                 fbUpdateAmount = "shares/" + idOfShare + "/soldShares/" + check_ID + "/amountSum";
                                 fbUpdateSoldSum = "shares/" + idOfShare + "/soldSum";
-                              //  fbUpdateCountOfSharesBought = fbUpdate+"/boughtCount";
-                              //  fbUpdateSharesBoughtSum = fbUpdate+"/boughtSum";
-                               // fbUpdateShopId = "shares/" + idOfShare + "/soldShares/" + check_ID + "/shopId";
-                               // fbUpdateCustomerId = "shares/" + idOfShare + "/soldShares/" + num + "/customerId";
+
+
+                                fbUpdateInAdmin = "admins/" + idOfShop + "/soldShares/"+check_ID;
+                                fbUpdateAmountInAdmin= "admins/" + idOfShop + "/soldShares/"+check_ID + "/amountSum";
+
+                                fbUpdateInUser= "users/" + check_ID + "/soldShares/"+idOfShop;
+                                fbUpdateAmountInUser= "users/" + check_ID + "/soldShares/"+idOfShop + "/amountSum";
+                                //fbUpdateSoldSumInAdmin = "admins/" + idOfShop + "/soldSum";
 
                                 mDbRef = mDatabase.getReference(fbUpdateSoldCount);
                                 mDbRef1 = mDatabase.getReference(fbUpdateAmount);
                                 mDbRef2 = mDatabase.getReference(fbUpdateSoldSum);
-                              //  mDbRef3 = mDatabase.getReference(fbUpdateCountOfSharesBought);
-                              //  mDbRef4 = mDatabase.getReference(fbUpdateSharesBoughtSum);
+
+
+                                mDbRef3 = mDatabase.getReference(fbUpdateAmountInAdmin);
+
+                                mDbRef4 = mDatabase.getReference(fbUpdateAmountInUser);
 
 
 
@@ -241,39 +326,14 @@ public class ShareDetails extends AppCompatActivity {
                                 mDbRef1.setValue(String.valueOf(buyAmountInt));
                                 mDbRef2.setValue(String.valueOf(setSoldSum));
 
+                                mDbRef3.setValue(String.valueOf(buyAmountIntInAdmin));
 
-                             //   mDbRef3 = mDatabase.getReference(fbUpdateShopId);
-                              //  mDbRef4 = mDatabase.getReference(fbUpdateCustomerId);
-
-
-
-                            //    mDbRef3.setValue(idOfShop);
-                            //    mDbRef4.setValue(check_ID);
+                                mDbRef4.setValue(String.valueOf(buyAmountIntInUser));
 
 
 
 
 
-                                Toast.makeText(ShareDetails.this, "admin num= "+String.valueOf(adminNum), Toast.LENGTH_SHORT).show();
-                                Toast.makeText(ShareDetails.this, "user num= "+String.valueOf(userNum), Toast.LENGTH_SHORT).show();
-
-
-
-//                                 adminUpdate = "admins/" + idOfShop + "/soldShares/"+adminNum;
-//
-//                                adminUpdateSoldCount = "admins/" + idOfShop + "/shareCount";
-//                                adminUpdateAmount = adminUpdate +"/totalAmount";
-//                                adminRedeemedSoldSum = adminUpdate+"/redeemedSum";
-//                                adminRedeemedCount = adminUpdate+"/redeemedCount";
-
-
-
-//
-//                                fbUpdateSoldCount = "shares/" + idOfShare + "/soldCount";
-//                                fbUpdateAmount = "shares/" + idOfShare + "/soldShares/" + num + "/amount";
-//                                fbUpdateSoldSum = "shares/" + idOfShare + "/soldSum";
-//                                fbUpdateShopId = "shares/" + idOfShare + "/soldShares/" + num + "/shopId";
-//                                fbUpdateCustomerId = "shares/" + idOfShare + "/soldShares/" + num + "/customerId";
 
 
 
@@ -292,44 +352,13 @@ public class ShareDetails extends AppCompatActivity {
                             }
                             else
                             {
-                                Toast.makeText(ShareDetails.this, "ENTER A VALID AMOUNT", Toast.LENGTH_SHORT).show();
+                               // Toast.makeText(ShareDetails.this, "ENTER A VALID AMOUNT", Toast.LENGTH_SHORT).show();
                             }
 
 
 
 
 
-//                            String fbUpdate = "shares/" + pathOfShare + "/soldShares/" + num;
-//
-//                            String fbUpdateSoldCount = "shares/" + pathOfShare + "/soldCount";
-//                            String fbUpdateAmount = "shares/" + pathOfShare + "/soldShares/" + num + "/amount";
-//                            String fbUpdateSoldSum = "shares/" + pathOfShare + "/soldSum";
-//                            String fbUpdateShopId = "shares/" + pathOfShare + "/soldShares/" + num + "/shopId";
-//                            String fbUpdateCustomerId = "shares/" + pathOfShare + "/soldShares/" + num + "/customerId";
-//
-//
-//                            DatabaseReference mDbRef = mDatabase.getReference(fbUpdateSoldCount);
-//                            DatabaseReference mDbRef1 = mDatabase.getReference(fbUpdateAmount);
-//                            DatabaseReference mDbRef2 = mDatabase.getReference(fbUpdateSoldSum);
-//                            DatabaseReference mDbRef3 = mDatabase.getReference(fbUpdateShopId);
-//                            DatabaseReference mDbRef4 = mDatabase.getReference(fbUpdateCustomerId);
-//
-//
-//                            mDbRef.setValue(String.valueOf(num));
-//                            mDbRef1.setValue(buyAmount);
-//                            mDbRef2.setValue(String.valueOf(setSoldSum));
-//                            mDbRef3.setValue(idOfShop);
-//                            mDbRef4.setValue(check_ID);
-//
-//                            Toast.makeText(ShareDetails.this, "Okay", Toast.LENGTH_SHORT).show();
-//                            amountToBuy.setText("");
-//
-
-//
-//                            Intent login=new Intent(ShareDetails.this,log.class);
-//                            //login.putExtra("user_id",check_ID);
-//                            startActivity(login);
-//                            finish();
 
 
                         } else {
@@ -347,10 +376,6 @@ public class ShareDetails extends AppCompatActivity {
 
 
 
-
-
-
-        //t1.setText(pathOfShare);
 
 
 
