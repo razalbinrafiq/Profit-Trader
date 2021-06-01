@@ -3,6 +3,8 @@ package com.example.profittrader;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -37,6 +39,13 @@ import java.util.List;
 public class AdminActivity extends AppCompatActivity {
 
 
+
+    RecyclerView recyclerView;
+    LinearLayoutManager layoutManager;
+    List<ModelClassOfAdminActivity>userListOfAdminActivity;
+    AdapterOfAdminActivity adapter;
+
+
     private GridLayout mLayout;
     Button addShareButton,test;
     DynamicViews dmv;
@@ -54,60 +63,60 @@ public class AdminActivity extends AppCompatActivity {
     String user = null;
     String nameOfShop = null;
 
-    public TextView sentText(Context context, String text){
-        final ViewGroup.LayoutParams lparams= new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        final TextView textView=new TextView(context);
-        textView.setLayoutParams(lparams);
-        textView.setTextSize(10);
-        textView.setTextColor(Color.rgb(0,0,0));
-        textView.setText(""+ text + "");
-        textView.setTextSize(22);
-        textView.setMaxEms(8);
-        textView.setVisibility(View.INVISIBLE);
-       // numOfChitty= textView.getText().toString();
-        return textView;
-    }
-
-
-
-    public Button activeSharesButton(final Context context) {
-        final ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        final Button button = new Button(context);
-        button.setLayoutParams(lparams);
-        button.setTextSize(22);
-        button.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        button.setTextColor(Color.rgb(255, 255, 255));
-        button.setText(getShareName);
-        button.setTag(getCurrentNum);
-        button.setBackgroundResource(R.drawable.blackbutton);
-        button.setGravity(Gravity.CENTER_VERTICAL);
-        lparams.width=lparams.MATCH_PARENT;
-        lparams.height=261;
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                    String value="Hello world";
-//                    Intent i = new Intent(view.getContext(),Test.class);
-//                   // i.putExtra("key",hellooi);
-//                    context.startActivity(i);
-                //       Intent i=new Intent(ctx.getApplicationContext(),Test.class);
-//                   .startActivity(i);
-                String sendingID=button.getText().toString();
-                String sendingShareID="shares/"+button.getTag().toString();
-                Toast.makeText(context,button.getTag().toString(), Toast.LENGTH_SHORT).show();
-                Intent i=new Intent(AdminActivity.this,AmountDetails.class);
-                Bundle bundle=new Bundle();
-
-                bundle.putString("key",sendingShareID);
-                bundle.putString("user",user);
-                bundle.putString("share",sendingID);
-                i.putExtras(bundle);
-                //  finish();
-                startActivity(i);
-            }
-        });
-        return button;
-    }
+//    public TextView sentText(Context context, String text){
+//        final ViewGroup.LayoutParams lparams= new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        final TextView textView=new TextView(context);
+//        textView.setLayoutParams(lparams);
+//        textView.setTextSize(10);
+//        textView.setTextColor(Color.rgb(0,0,0));
+//        textView.setText(""+ text + "");
+//        textView.setTextSize(22);
+//        textView.setMaxEms(8);
+//        textView.setVisibility(View.INVISIBLE);
+//       // numOfChitty= textView.getText().toString();
+//        return textView;
+//    }
+//
+//
+//
+//    public Button activeSharesButton(final Context context) {
+//        final ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        final Button button = new Button(context);
+//        button.setLayoutParams(lparams);
+//        button.setTextSize(22);
+//        button.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+//        button.setTextColor(Color.rgb(255, 255, 255));
+//        button.setText(getShareName);
+//        button.setTag(getCurrentNum);
+//        button.setBackgroundResource(R.drawable.blackbutton);
+//        button.setGravity(Gravity.CENTER_VERTICAL);
+//        lparams.width=lparams.MATCH_PARENT;
+//        lparams.height=261;
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                    String value="Hello world";
+////                    Intent i = new Intent(view.getContext(),Test.class);
+////                   // i.putExtra("key",hellooi);
+////                    context.startActivity(i);
+//                //       Intent i=new Intent(ctx.getApplicationContext(),Test.class);
+////                   .startActivity(i);
+//                String sendingID=button.getText().toString();
+//                String sendingShareID="shares/"+button.getTag().toString();
+//                Toast.makeText(context,button.getTag().toString(), Toast.LENGTH_SHORT).show();
+//                Intent i=new Intent(AdminActivity.this,AmountDetails.class);
+//                Bundle bundle=new Bundle();
+//
+//                bundle.putString("key",sendingShareID);
+//                bundle.putString("user",user);
+//                bundle.putString("share",sendingID);
+//                i.putExtras(bundle);
+//                //  finish();
+//                startActivity(i);
+//            }
+//        });
+//        return button;
+//    }
 
 
 
@@ -144,51 +153,56 @@ public class AdminActivity extends AppCompatActivity {
         getRef1 = FirebaseDatabase.getInstance().getReference("shareCount");
 
         addShareButton=(Button)findViewById(R.id.addShareButton);
-        mLayout=(GridLayout) findViewById(R.id.mylayout);
+        //mLayout=(GridLayout) findViewById(R.id.mylayout);
+//
+//        DatabaseReference fb_to_read = FirebaseDatabase.getInstance().getReference("shares");
+//
+//        fb_to_read.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                List<String> list=new ArrayList<String>();
+//                for (DataSnapshot dsp : snapshot.getChildren()){
+//                    list.add(String.valueOf(dsp.getKey()));
+//                }
+//
+//                for(final String data:list){
+//                    dmv=new DynamicViews(context);
+//
+//                    String status=snapshot.child(data).child("status").getValue(String.class);
+//
+//                    //                mLayout.addView(dmv.slnoTextVIew(getApplicationContext(),"data"),i);
+//                    //               mLayout.addView(dmv.chittalIDTextView(getApplicationContext(), "f"),i+1);
+//                    //                mLayout.addView(dmv.nameTextVIew(getApplicationContext(),data),i);
+//
+//
+//                    getShareName=snapshot.child(data).child("shareAmount").getValue(String.class);
+//                    getCurrentNum=data;
+//                    String getShareId=snapshot.child(data).child("adminId").getValue(String.class);
+//                   //Toast.makeText(context, "hy", Toast.LENGTH_SHORT).show();
+//                    if(getShareId.equals(user)){
+//                        mLayout.addView(sentText(getApplicationContext(),data),i);
+//                        mLayout.addView(activeSharesButton(getApplicationContext()),i+1);
+//                        i=i+2;
+//
+////                       // Toast.makeText(context, "hy", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                }
+//
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
-        DatabaseReference fb_to_read = FirebaseDatabase.getInstance().getReference("shares");
-
-        fb_to_read.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                List<String> list=new ArrayList<String>();
-                for (DataSnapshot dsp : snapshot.getChildren()){
-                    list.add(String.valueOf(dsp.getKey()));
-                }
-
-                for(final String data:list){
-                    dmv=new DynamicViews(context);
-
-                    String status=snapshot.child(data).child("status").getValue(String.class);
-
-                    //                mLayout.addView(dmv.slnoTextVIew(getApplicationContext(),"data"),i);
-                    //               mLayout.addView(dmv.chittalIDTextView(getApplicationContext(), "f"),i+1);
-                    //                mLayout.addView(dmv.nameTextVIew(getApplicationContext(),data),i);
 
 
-                    getShareName=snapshot.child(data).child("shareAmount").getValue(String.class);
-                    getCurrentNum=data;
-                    String getShareId=snapshot.child(data).child("adminId").getValue(String.class);
-                   //Toast.makeText(context, "hy", Toast.LENGTH_SHORT).show();
-                    if(getShareId.equals(user)){
-                        mLayout.addView(sentText(getApplicationContext(),data),i);
-                        mLayout.addView(activeSharesButton(getApplicationContext()),i+1);
-                        i=i+2;
 
-//                       // Toast.makeText(context, "hy", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        initData("1,","2","2,3","4,","5","67");
 
     }
 
@@ -261,11 +275,9 @@ public class AdminActivity extends AppCompatActivity {
                 mDbRef9.setValue("0");
                 mDbRef10.setValue("0");
 
-                // Toast.makeText(getApplicationContext(), "Yes button Clicked", Toast.LENGTH_LONG).show();
-                // Log.i("Code2care ", "Yes button Clicked!");
+
                 dialog.dismiss();
-//               finish();
-//               onStart();
+
 
                 Intent iu=new Intent(AdminActivity.this,AdminActivity.class);
                 iu.putExtra("user_id",user);
@@ -295,7 +307,82 @@ public class AdminActivity extends AppCompatActivity {
     }
 
 
-    public void logout(){
+
+    private void initRecyclerView() {
+
+        recyclerView=findViewById(R.id.recyclerViewOfAdminActivity);
+        layoutManager=new LinearLayoutManager(this);
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+        adapter=new AdapterOfAdminActivity(userListOfAdminActivity);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+    }
+
+    private void initData(String name,String amount, String date,String id,String shareId, String number) {
+
+
+        userListOfAdminActivity = new ArrayList<>();
+
+
+        DatabaseReference fb_to_read = FirebaseDatabase.getInstance().getReference("shares");
+
+        fb_to_read.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                List<String> list=new ArrayList<String>();
+                for (DataSnapshot dsp : snapshot.getChildren()){
+                    list.add(String.valueOf(dsp.getKey()));
+                }
+
+                for(final String data:list){
+                    dmv=new DynamicViews(context);
+
+                    String status=snapshot.child(data).child("status").getValue(String.class);
+
+                    //                mLayout.addView(dmv.slnoTextVIew(getApplicationContext(),"data"),i);
+                    //               mLayout.addView(dmv.chittalIDTextView(getApplicationContext(), "f"),i+1);
+                    //                mLayout.addView(dmv.nameTextVIew(getApplicationContext(),data),i);
+
+
+                    getShareName=snapshot.child(data).child("shareAmount").getValue(String.class);
+                    getCurrentNum=data;
+                    String getShareId=snapshot.child(data).child("adminId").getValue(String.class);
+                    String getShareDate=snapshot.child(data).child("date").getValue(String.class);
+                    //Toast.makeText(context, "hy", Toast.LENGTH_SHORT).show();
+                    if(getShareId.equals(user)){
+                       // mLayout.addView(sentText(getApplicationContext(),data),i);
+                      //  mLayout.addView(activeSharesButton(getApplicationContext()),i+1);
+                        i=i+1;
+
+//                       // Toast.makeText(context, "hy", Toast.LENGTH_SHORT).show();
+
+                        userListOfAdminActivity.add(new ModelClassOfAdminActivity(R.drawable.dollar5, getShareName, getShareDate, "3", "3", data.toString(), String.valueOf(i)));
+
+                    }
+
+                    initRecyclerView();
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+    }
+
+        public void logout(){
 
         SharedPreferences loginDetails = getSharedPreferences("loginDetails", MODE_PRIVATE);
         SharedPreferences.Editor editor = loginDetails.edit();

@@ -4,20 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:weightSum="11"
+    tools:context=".AdminActivity">
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
-        android:padding="10dp"
-        android:paddingBottom="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,30 +21,40 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="1dp"
             tools:context=".PeopleList">
 
 
-            <GridLayout
-                android:id="@+id/mylayout"
+<!--            <GridLayout-->
+<!--                android:id="@+id/mylayout"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:columnCount="1"-->
+<!--                android:padding="0dp">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:padding="0dp"-->
+<!--                    android:text=""-->
+<!--                    android:textColor="#000" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:padding="0dp"-->
+<!--                    android:text=""-->
+<!--                    android:textColor="@color/black" />-->
+
+<!--            </GridLayout>-->
+
+
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="1"
-                android:padding="0dp">
+                android:layout_height="match_parent"
+                android:background="#ffffff"
+                android:id="@+id/recyclerViewOfAdminActivity"/>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:padding="0dp"
-                    android:text=""
-                    android:textColor="#000" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:padding="0dp"
-                    android:text=""
-                    android:textColor="@color/black" />
 
-            </GridLayout>
+
         </LinearLayout>
     </ScrollView>
 

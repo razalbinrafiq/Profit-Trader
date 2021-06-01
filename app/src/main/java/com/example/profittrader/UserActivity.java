@@ -63,62 +63,6 @@ public class UserActivity extends AppCompatActivity {
     String getShareName, getShareAmount, getShareDate,getShareId;
     String user = null;
 
-//
-//
-//    public TextView sentText(Context context, String text){
-//        final ViewGroup.LayoutParams lparams= new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//        final TextView textView=new TextView(context);
-//        textView.setLayoutParams(lparams);
-//        textView.setTextSize(10);
-//        textView.setTextColor(Color.rgb(0,0,0));
-//        textView.setText(""+ text + "");
-//        textView.setTextSize(22);
-//        textView.setMaxEms(8);
-//        textView.setVisibility(View.INVISIBLE);
-//        numOfChitty= textView.getText().toString();
-//        return textView;
-//    }
-//
-//
-//
-//    public Button chittymemberButton(final Context context) {
-//        final ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//        final Button button = new Button(context);
-//        button.setLayoutParams(lparams);
-//        button.setTextSize(22);
-//        button.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-//        button.setTextColor(Color.rgb(255, 255, 255));
-//        button.setText(getChittyName);
-//        button.setTag(numOfChitty);
-//        button.setBackgroundResource(R.drawable.blackbutton);
-//        button.setGravity(Gravity.CENTER_VERTICAL);
-//        lparams.width=lparams.MATCH_PARENT;
-//        lparams.height=261;
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                    String value="Hello world";
-////                    Intent i = new Intent(view.getContext(),Test.class);
-////                   // i.putExtra("key",hellooi);
-////                    context.startActivity(i);
-//                //       Intent i=new Intent(ctx.getApplicationContext(),Test.class);
-////                   .startActivity(i);
-//                String sendingID=button.getText().toString();
-//                String sendingChittyID="users/"+user+"/Chitties/"+ button.getTag().toString();
-//                Toast.makeText(context,button.getTag().toString(), Toast.LENGTH_SHORT).show();
-//                Intent i=new Intent(UserActivity.this,ShareDetails.class);
-//                Bundle bundle=new Bundle();
-//
-//                bundle.putString("key",sendingChittyID);
-//                bundle.putString("user",user);
-//                bundle.putString("chitty",sendingID);
-//                i.putExtras(bundle);
-//                //  finish();
-//                startActivity(i);
-//            }
-//        });
-//        return button;
-//    }
 
 
     @Override
@@ -169,7 +113,7 @@ public class UserActivity extends AppCompatActivity {
 
         getRef1 = FirebaseDatabase.getInstance().getReference("shares");
         //addChittyButton=(Button)findViewById(R.id.addChittyButton);
-        mLayout=(GridLayout) findViewById(R.id.mylayout);
+       // mLayout=(GridLayout) findViewById(R.id.mylayout);
 
 
          initData("1,","2","2,3","4,","5","67");
