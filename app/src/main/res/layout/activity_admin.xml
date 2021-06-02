@@ -12,6 +12,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="8"
+        android:layout_above="@+id/bottom_navigation_admin_activity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,6 +59,18 @@
 
         </LinearLayout>
     </ScrollView>
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_navigation_admin_activity"
+        android:layout_weight="3"
+        app:itemBackground="@color/colorPrimary"
+        app:itemTextColor="@drawable/selector_admin_activity"
+        app:itemIconTint="@drawable/selector_admin_activity"
+        app:menu="@menu/menu_navigation_admin_activity"
+        android:layout_alignParentBottom="true"/>
 
 
 </LinearLayout>

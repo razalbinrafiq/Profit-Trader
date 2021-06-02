@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProfitTrader">
-        <activity android:name=".BuyingShareSplashLayout"></activity>
+        <activity android:name=".PeopleBought"></activity>
+        <activity android:name=".AdminProfile" />
+        <activity android:name=".ParticularSharesBought" />
+        <activity android:name=".BuyingShareSplashLayout" />
         <activity android:name=".UserWallet" />
         <activity android:name=".UserProfile" />
         <activity android:name=".AdminEditPassword" />

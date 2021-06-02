@@ -40,11 +40,11 @@ public class ShareDetails extends AppCompatActivity {
     int buyAmountIntInUser;
     String buyAmount;
     String getSoldCount;
-    String fbUpdate,fbUpdateSoldCount,fbUpdateAmount,fbUpdateSoldSum,fbUpdateCountOfSharesBought,fbUpdateSharesBoughtSum,fbUpdateShopId,fbUpdateCustomerId;
+    String fbUpdate,fbUpdateSoldCount,fbUpdateAmount,fbUpdateNameOfUser,fbUpdateSoldSum,fbUpdateCountOfSharesBought,fbUpdateSharesBoughtSum,fbUpdateShopId,fbUpdateCustomerId;
     String fbUpdateInAdmin,fbUpdateAmountInAdmin;
     String fbUpdateInUser,fbUpdateAmountInUser;
     String idOfShare,getIdOfShop;
-    String countOfSharesBought;
+    String countOfSharesBought,nameOfUserBought;
     String countOfSharesBoughtInAdmin,countOfSharesBoughtInUser;
 
     String adminKey,getAdminSoldCount,adminUpdate;
@@ -56,7 +56,7 @@ public class ShareDetails extends AppCompatActivity {
 
 
 
-    DatabaseReference mDbRef,mDbRef1, mDbRef2, mDbRef3, mDbRef4;
+    DatabaseReference mDbRef,mDbRef1, mDbRef2, mDbRef3, mDbRef4,mDbRef5;
 
 
     @Override
@@ -253,6 +253,7 @@ public class ShareDetails extends AppCompatActivity {
                                 }
 
                                 countOfSharesBoughtInUser = snapshot3.child("soldShares").child(idOfShop).child("amountSum").getValue(String.class);
+                                nameOfUserBought = snapshot3.child("userDetails").child("name").getValue(String.class);
 
                                 if(countOfSharesBoughtInUser!=null){
 
@@ -301,6 +302,7 @@ public class ShareDetails extends AppCompatActivity {
 
                                 fbUpdateSoldCount = "shares/" + idOfShare + "/soldCount";
                                 fbUpdateAmount = "shares/" + idOfShare + "/soldShares/" + check_ID + "/amountSum";
+                                fbUpdateNameOfUser = "shares/" + idOfShare + "/soldShares/" + check_ID + "/name";
                                 fbUpdateSoldSum = "shares/" + idOfShare + "/soldSum";
 
 
@@ -314,7 +316,7 @@ public class ShareDetails extends AppCompatActivity {
                                 mDbRef = mDatabase.getReference(fbUpdateSoldCount);
                                 mDbRef1 = mDatabase.getReference(fbUpdateAmount);
                                 mDbRef2 = mDatabase.getReference(fbUpdateSoldSum);
-
+                                mDbRef5 = mDatabase.getReference(fbUpdateNameOfUser);
 
                                 mDbRef3 = mDatabase.getReference(fbUpdateAmountInAdmin);
 
@@ -322,9 +324,12 @@ public class ShareDetails extends AppCompatActivity {
 
 
 
+
                                 mDbRef.setValue(String.valueOf(num));
                                 mDbRef1.setValue(String.valueOf(buyAmountInt));
                                 mDbRef2.setValue(String.valueOf(setSoldSum));
+                                mDbRef5.setValue(String.valueOf(nameOfUserBought));
+
 
                                 mDbRef3.setValue(String.valueOf(buyAmountIntInAdmin));
 

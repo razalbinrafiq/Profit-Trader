@@ -8,45 +8,44 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class AdapterOfAdminActivity extends RecyclerView.Adapter<AdapterOfAdminActivity.ViewHolder> {
+public class AdapterOfParticularSharesBought extends RecyclerView.Adapter<AdapterOfParticularSharesBought.ViewHolder> {
 
-    private List<ModelClassOfAdminActivity> userListOfAdminActivity;
+    private List<ModelClassOfParticularSharesBought> userListOfParticularSharesBought;
 
-    public AdapterOfAdminActivity(List<ModelClassOfAdminActivity>userListOfAdminActivity){this.userListOfAdminActivity=userListOfAdminActivity;}
+    public AdapterOfParticularSharesBought(List<ModelClassOfParticularSharesBought>userListOfParticularSharesBought){this.userListOfParticularSharesBought=userListOfParticularSharesBought;}
 
 
     @NonNull
     @Override
-    public AdapterOfAdminActivity.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_design_admin_activity,parent,false);
+    public AdapterOfParticularSharesBought.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_design_particular_shares_bought,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterOfAdminActivity.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterOfParticularSharesBought.ViewHolder holder, int position) {
 
-        int resource= userListOfAdminActivity.get(position).getImageView1();
-        String name=userListOfAdminActivity.get(position).getNameTextView();
-        String amount=userListOfAdminActivity.get(position).getAmountTextView();
-        String date=userListOfAdminActivity.get(position).getDateTextView();
-        String id=userListOfAdminActivity.get(position).getIdTextView();
-        String shareId=userListOfAdminActivity.get(position).getShareIdTextView();
-        String number=userListOfAdminActivity.get(position).getNumberTextView();
+        int resource= userListOfParticularSharesBought.get(position).getImageView1();
+        String name=userListOfParticularSharesBought.get(position).getNameTextView();
+        String amount=userListOfParticularSharesBought.get(position).getAmountTextView();
+        String date=userListOfParticularSharesBought.get(position).getDateTextView();
+        String id=userListOfParticularSharesBought.get(position).getIdTextView();
+        String shareId=userListOfParticularSharesBought.get(position).getShareIdTextView();
+        String number=userListOfParticularSharesBought.get(position).getNumberTextView();
 
         holder.setData(resource,name,amount,date,id,shareId,number);
         // holder.nameTextView.setBackgroundColor(255);
 
         if(Integer.parseInt(number.toString())%2==0)
-            holder.itemView.setBackgroundColor(Color.parseColor("#08a12c"));
+            holder.itemView.setBackgroundColor(Color.parseColor("#e3e3e3"));
         else
-            holder.itemView.setBackgroundColor(Color.parseColor("#72f289"));
+            holder.itemView.setBackgroundColor(Color.parseColor("#e9f2f0"));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +64,7 @@ public class AdapterOfAdminActivity extends RecyclerView.Adapter<AdapterOfAdminA
 
     @Override
     public int getItemCount() {
-        return userListOfAdminActivity.size();
+        return userListOfParticularSharesBought.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
