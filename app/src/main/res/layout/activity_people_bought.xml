@@ -6,7 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".PeopleBought">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scroll_view"
+        android:layout_weight="8"
+        android:layout_above="@+id/bottom_navigation_admin_activity"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".PeopleList">
+
+
+            <!--            <GridLayout-->
+            <!--                android:id="@+id/mylayout"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:columnCount="1"-->
+            <!--                android:padding="0dp">-->
+
+            <!--                <TextView-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:padding="0dp"-->
+            <!--                    android:text=""-->
+            <!--                    android:textColor="#000" />-->
+
+            <!--                <TextView-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:padding="0dp"-->
+            <!--                    android:text=""-->
+            <!--                    android:textColor="@color/black" />-->
+
+            <!--            </GridLayout>-->
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffff"
+                android:id="@+id/recyclerViewOfPeopleBought"/>
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"

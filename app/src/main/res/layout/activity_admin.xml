@@ -28,28 +28,6 @@
             tools:context=".PeopleList">
 
 
-<!--            <GridLayout-->
-<!--                android:id="@+id/mylayout"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:columnCount="1"-->
-<!--                android:padding="0dp">-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:padding="0dp"-->
-<!--                    android:text=""-->
-<!--                    android:textColor="#000" />-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:padding="0dp"-->
-<!--                    android:text=""-->
-<!--                    android:textColor="@color/black" />-->
-
-<!--            </GridLayout>-->
-
-
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

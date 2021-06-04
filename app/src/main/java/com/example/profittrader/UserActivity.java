@@ -158,12 +158,6 @@ public class UserActivity extends AppCompatActivity {
 
                 for(final String data:list){
 
-                    //  dmv=new DynamicViews(context);
-
-                    // String status=snapshot.child(data).child("status").getValue(String.class);
-
-
-                    // mLayout.addView(sentText(getApplicationContext(),data),i);
                     getShareName=snapshot.child(data).child("shopName").getValue(String.class).toUpperCase();
                     getShareAmount=snapshot.child(data).child("shareAmount").getValue(String.class);
                     getShareDate="Valid till "+ snapshot.child(data).child("date").getValue(String.class);
@@ -172,26 +166,7 @@ public class UserActivity extends AppCompatActivity {
                     userList.add(new ModelClass(R.drawable.logo,getShareName,getShareAmount, getShareDate,getShareId,data.toString(),String.valueOf(i)));
 
 
-//                    userList = new ArrayList<>();
-//                    userList.add(new ModelClass(R.drawable.logo,getChittyName,"Am", "Da"));
 
-                 //   Toast.makeText(UserActivity.this,getShareAmount, Toast.LENGTH_SHORT).show();
-
-//                    userList = new ArrayList<>();
-//                    userList.add(new ModelClass(R.drawable.logo,getShareName,getShareAmount, getShareDate));
-//
-//                    recyclerView=findViewById(R.id.recyclerView);
-//                    layoutManager=new LinearLayoutManager(UserActivity.this);
-//                    layoutManager.setOrientation(RecyclerView.VERTICAL);
-//                    recyclerView.setLayoutManager(layoutManager);
-//                    adapter=new Adapter(userList);
-//                    recyclerView.setAdapter(adapter);
-//                    adapter.notifyDataSetChanged();
-//
-
-
-                    //  mLayout.addView(chittymemberButton(getApplicationContext()),i+1);
-                    // i=i+2;
 
                 }
 
