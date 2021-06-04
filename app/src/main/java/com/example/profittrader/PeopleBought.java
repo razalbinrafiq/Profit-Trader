@@ -20,25 +20,25 @@ public class PeopleBought extends AppCompatActivity {
 
 
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation_admin_activity);
-        bottomNavigationView.setSelectedItemId(R.id.people);
+        bottomNavigationView.setSelectedItemId(R.id.people2);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 switch (item.getItemId()){
-                    case R.id.profile:
+                    case R.id.profile2:
                         startActivity(new Intent(getApplicationContext(),AdminProfile.class));
                         overridePendingTransition(0,0);
                         finish();
                         return true;
-                    case R.id.home:
+                    case R.id.home2:
                         startActivity(new Intent(getApplicationContext(),AdminActivity.class));
                         overridePendingTransition(0,0);
                         finish();
 
                         return true;
-                    case R.id.wallet:
+                    case R.id.people2:
 
                         return true;
                 }

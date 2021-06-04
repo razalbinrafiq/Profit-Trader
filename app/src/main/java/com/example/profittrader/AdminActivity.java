@@ -77,24 +77,29 @@ public class AdminActivity extends AppCompatActivity {
             user = login.getString("user_id");
             //  Toast.makeText(MainActivity.this,user, Toast.LENGTH_SHORT).show();
         }
+        else{
+            SharedPreferences loginDetails =  getSharedPreferences("loginDetails", MODE_PRIVATE);
+            user= loginDetails.getString("id","0");
+
+        }
 
 
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation_admin_activity);
-        bottomNavigationView.setSelectedItemId(R.id.home);
+        bottomNavigationView.setSelectedItemId(R.id.home2);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 switch (item.getItemId()){
-                    case R.id.profile:
+                    case R.id.profile2:
                         startActivity(new Intent(getApplicationContext(),AdminProfile.class));
                         overridePendingTransition(0,0);
                         finish();
                         return true;
-                    case R.id.home:
+                    case R.id.home2:
                         return true;
-                    case R.id.people:
+                    case R.id.people2:
                         startActivity(new Intent(getApplicationContext(),PeopleBought.class));
                         overridePendingTransition(0,0);
                         finish();

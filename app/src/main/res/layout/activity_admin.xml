@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="11"
-    tools:context=".AdminActivity">
+    tools:context=".AdminProfile">
+
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/scroll_view"
         android:layout_weight="8"
         android:layout_above="@+id/bottom_navigation_admin_activity"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,12 +62,10 @@
         </LinearLayout>
     </ScrollView>
 
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bottom_navigation_admin_activity"
-        android:layout_weight="3"
         app:itemBackground="@color/colorPrimary"
         app:itemTextColor="@drawable/selector_admin_activity"
         app:itemIconTint="@drawable/selector_admin_activity"
@@ -73,4 +73,6 @@
         android:layout_alignParentBottom="true"/>
 
 
-</LinearLayout>
+
+
+</RelativeLayout>
