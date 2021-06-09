@@ -51,7 +51,7 @@ public class AdapterOfUserWallet extends RecyclerView.Adapter<AdapterOfUserWalle
             public void onClick(View v) {
                 //holder.nameTextView.setText("UI");
                 Context u=holder.itemView.getContext();
-                Intent iu=new Intent(u,ParticularSharesBought.class);
+                Intent iu=new Intent(u,RedeemPoints.class);
                 iu.putExtra("path",shareId);
                 u.startActivity(iu);
                 //Toast.makeText(u, holder.shareIdTextView.getText(), Toast.LENGTH_SHORT).show();

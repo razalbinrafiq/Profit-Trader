@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProfitTrader">
-        <activity android:name=".PeopleBought"></activity>
+        <activity android:name=".RedeemPoints"></activity>
+        <activity android:name=".PeopleBought" />
         <activity android:name=".AdminProfile" />
         <activity android:name=".ParticularSharesBought" />
         <activity android:name=".BuyingShareSplashLayout" />
