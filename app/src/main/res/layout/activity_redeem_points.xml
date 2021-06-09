@@ -29,8 +29,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="40dp"
+        android:paddingTop="80dp"
         android:orientation="vertical"
+
         android:gravity="center_vertical"
         android:weightSum="10">
 
@@ -72,14 +73,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="8.0"
-                android:text="Total Share"
+                android:text="Redeemed Share"
                 android:textSize="17dp"
                 android:textColor="@color/black"
                 android:fontFamily="monospace"
                 android:padding="10dp"
                 android:gravity="left" />
             <TextView
-                android:id="@+id/totalAmountTextView"
+                android:id="@+id/redeemedAmountTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.0"
@@ -123,11 +124,11 @@
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="20dp"
-
+            android:background="@drawable/amountborder"
             android:padding="20dp">
             <EditText
                 android:id="@+id/amountEditText"
@@ -141,13 +142,13 @@
                 android:gravity="center_horizontal" />
 
             <Button
-                android:id="@+id/buyButton"
+                android:id="@+id/redeemButton"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
                 android:layout_weight="2.0"
-
-                android:background="@drawable/blackbutton"
-                android:text="BUY" />
+                android:textSize="8dp"
+                android:background="@drawable/buttonbachground"
+                android:text="REDEEM" />
         </LinearLayout>
 
 

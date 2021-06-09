@@ -261,21 +261,6 @@ public class ShareDetails extends AppCompatActivity {
 
 
 
-//                                countOfSharesBoughtInUser = snapshot3.child("soldShares").child(idOfShop).child("amountSum").getValue(String.class);
-//                                nameOfUserBought = snapshot3.child("userDetails").child("name").getValue(String.class);
-//
-//                                if(countOfSharesBoughtInUser!=null){
-//
-//                                    buyAmountIntInUser=buyAmountIntInUser+ Integer.parseInt(snapshot3.child("soldShares").child(idOfShop).child("amountSum").getValue(String.class));
-//
-//
-//                                    //   Toast.makeText(ShareDetails.this, countOfSharesBought, Toast.LENGTH_SHORT).show();
-//                                }
-//                                else {
-//
-//                                    buyAmountIntInUser=Integer.parseInt(buyAmount);
-//                                     Toast.makeText(ShareDetails.this, "Null", Toast.LENGTH_SHORT).show();
-//                                }
 
                             }
 
