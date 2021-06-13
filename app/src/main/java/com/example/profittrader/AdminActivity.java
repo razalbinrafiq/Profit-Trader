@@ -338,12 +338,12 @@ public class AdminActivity extends AppCompatActivity {
     }
 
 
-    public void profiles()
+    public void redeemedHistory()
     {
-        String sendingprofile="admins/"+user+"/adminDetails";
+       // String sendingprofile="admins/"+user+"/adminDetails";
 
-        Intent profile=new Intent(AdminActivity.this,AdminProfileDetails.class);
-        profile.putExtra("key",sendingprofile);
+        Intent profile=new Intent(AdminActivity.this,RedeemedHistory.class);
+        //profile.putExtra("key",sendingprofile);
         startActivity(profile);
 
     }
@@ -363,7 +363,7 @@ public class AdminActivity extends AppCompatActivity {
                 return true;
             case R.id.logout:logout();
                 return  true;
-            case R.id.profile:profiles();
+            case R.id.profile:redeemedHistory();
                 return  true;
             default: return super.onOptionsItemSelected(item);
         }

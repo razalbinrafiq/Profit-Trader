@@ -176,7 +176,7 @@ public class RedeemPoints extends AppCompatActivity {
 
 
 
-                if(toRedeem>0 && toRedeem<amountSum){
+                if(toRedeem>0 && toRedeem<=amountSum){
 
                     toRedeem=amountSum-toRedeem;
 

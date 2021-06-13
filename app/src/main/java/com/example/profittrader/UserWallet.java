@@ -158,6 +158,7 @@ public class UserWallet extends AppCompatActivity {
                             shopName=snapshot2.child("userDetails").child("name").getValue(String.class);
                             totalAmountInt=totalAmountInt+Integer.parseInt(getShareAmount);
                             totalTextView.setText("₹ "+String.valueOf(totalAmountInt));
+                            if(Integer.parseInt(getShareAmount)!=0)
                             userListOfUserWallet.add(new ModelClassOfUserWallet(R.drawable.profile1, shopName, getShareAmount, data, "3", data.toString(), String.valueOf(i)));
 
                             initRecyclerView();
