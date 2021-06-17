@@ -9,43 +9,46 @@
 
     <androidx.cardview.widget.CardView
 
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/imageView"
         app:cardCornerRadius="60dp"
-        android:layout_marginTop="32dp"
-        android:layout_centerHorizontal="true">
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="32dp">
 
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:scaleType="centerCrop"
             android:id="@+id/imageProfile"
-            android:src="@drawable/profiledp">
+            android:src="@drawable/p1">
 
         </ImageView>
 
     </androidx.cardview.widget.CardView>
 
 
-
     <TextView
-        android:paddingTop="32dp"
+        android:id="@+id/nameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name"
-        android:layout_below="@+id/imageView"
-        android:textColor="@color/black"
-        android:id="@+id/nameTextView"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:layout_toRightOf="@+id/imageView"
+        android:fontFamily="@font/alegreya_sans_medium"
+        android:paddingLeft="20dp"
+        android:text="Name"
+        android:textColor="@color/black"
         android:textSize="32dp">
 
     </TextView>
 
     <RelativeLayout
+        android:id="@+id/RLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:paddingTop="40dp"
         android:layout_below="@+id/nameTextView"
         >
         <TextView
@@ -62,10 +65,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="EmailID"
+            android:paddingTop="52dp"
             android:id="@+id/emailIDTextView"
             android:textColor="@color/black"
-            android:paddingLeft="32dp"
-            android:layout_below="@id/email1"
+            android:layout_alignRight="@id/email1"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/alegreya_sans_medium"
             android:textSize="22dp">
 
 
@@ -77,7 +82,7 @@
             android:text="Phone Number"
             android:paddingTop="22dp"
             android:id="@+id/phone1"
-            android:layout_below="@id/emailIDTextView"
+            android:layout_below="@id/email1"
             android:textSize="22dp">
 
 
@@ -88,9 +93,12 @@
             android:text="Phone Number"
             android:id="@+id/phoneTextView"
             android:textColor="@color/black"
-            android:paddingLeft="32dp"
-            android:layout_below="@id/phone1"
-            android:textSize="22dp">
+            android:layout_below="@id/email1"
+            android:layout_alignRight="@id/phone1"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/alegreya_sans_medium"
+            android:textSize="22dp"
+            android:paddingTop="22dp">
 
 
         </TextView>
@@ -106,20 +114,41 @@
 
         </TextView>
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit Password"
-            android:id="@+id/editPasswordButton"
+            android:text="*********"
+            android:id="@+id/dots"
+            android:paddingTop="22dp"
+            android:layout_below="@id/phoneTextView"
+            android:layout_alignRight="@id/password1"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/password1"
+            android:textColor="@color/black"
+            android:fontFamily="@font/alegreya_sans_medium"
             android:textSize="22dp">
 
+        </TextView>
 
-        </Button>
     </RelativeLayout>
 
 
+    <Button
+        android:id="@+id/editPasswordButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/RLayout"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:background="@color/material_on_surface_stroke"
+        android:text="Edit Profile"
+        android:textColor="@color/black"
+        android:textSize="14dp">
+
+
+    </Button>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
@@ -131,6 +160,70 @@
         app:itemIconTint="@drawable/selector_admin_activity"
         app:menu="@menu/menu_navigation_admin_activity"
         android:layout_alignParentBottom="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Proudly Made In India"
+        android:id="@+id/ProudlyMadeInIndia"
+        android:paddingTop="5dp"
+        android:fontFamily="@font/alegreya_sans_medium"
+        android:textColor="@color/black"
+        android:layout_above="@id/bottom_navigation_admin_activity"
+        android:layout_centerHorizontal="true"
+        android:textSize="22dp">
+    </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Version 1.10.2"
+            android:id="@+id/Version"
+            android:fontFamily="@font/alegreya_sans_medium"
+            android:textColor="@color/black"
+            android:paddingTop="5dp"
+            android:layout_above="@id/ProudlyMadeInIndia"
+            android:layout_centerHorizontal="true"
+            android:textSize="22dp">
+
+        </TextView>
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="PROFIT TRADER"
+    android:id="@+id/ProfitTrader"
+    android:fontFamily="@font/alegreya_sans_medium"
+    android:textColor="@color/black"
+    android:paddingTop="5dp"
+    android:layout_above="@id/Version"
+    android:layout_centerHorizontal="true"
+    android:textSize="22dp">
+</TextView>
+
+
+
+    <androidx.cardview.widget.CardView
+
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/imageView2"
+        app:cardCornerRadius="60dp"
+        android:layout_above="@id/ProfitTrader"
+        android:layout_marginLeft="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:scaleType="centerCrop"
+            android:id="@+id/imageProfile2"
+            android:src="@drawable/profile2">
+
+        </ImageView>
+
+    </androidx.cardview.widget.CardView>
+
+
 
 
 
