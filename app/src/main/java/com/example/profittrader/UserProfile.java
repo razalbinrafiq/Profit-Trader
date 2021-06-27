@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +39,7 @@ public class UserProfile extends AppCompatActivity {
         nameTextView=(TextView)findViewById(R.id.nameTextView);
         emailTextView=(TextView)findViewById(R.id.emailIDTextView) ;
         phoneTextView=(TextView)findViewById(R.id.phoneTextView) ;
+        passwordEditButton=(Button)findViewById(R.id.editPasswordButton);
 
 
         SharedPreferences loginDetails =  getSharedPreferences("loginDetails", MODE_PRIVATE);
@@ -67,6 +69,16 @@ public class UserProfile extends AppCompatActivity {
 
             }
         });
+
+        passwordEditButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(UserProfile.this,EditProfile.class);
+                startActivity(i);
+
+            }
+        });
+
 
 
 

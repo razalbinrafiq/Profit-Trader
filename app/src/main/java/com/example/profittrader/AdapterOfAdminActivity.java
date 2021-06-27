@@ -44,9 +44,9 @@ public class AdapterOfAdminActivity extends RecyclerView.Adapter<AdapterOfAdminA
         // holder.nameTextView.setBackgroundColor(255);
 
         if(Integer.parseInt(number.toString())%2==0)
-            holder.itemView.setBackgroundColor(Color.parseColor("#08a12c"));
+            holder.itemView.setBackgroundColor(Color.parseColor("#92b39f"));
         else
-            holder.itemView.setBackgroundColor(Color.parseColor("#72f289"));
+            holder.itemView.setBackgroundColor(Color.parseColor("#5db07e"));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

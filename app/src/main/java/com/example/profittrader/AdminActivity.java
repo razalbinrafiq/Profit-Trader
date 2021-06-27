@@ -287,6 +287,7 @@ public class AdminActivity extends AppCompatActivity {
 
 
                     getShareName=snapshot.child(data).child("shareAmount").getValue(String.class);
+                    String getSharePercentage=snapshot.child(data).child("profitPercentage").getValue(String.class);
                     getCurrentNum=data;
                     String getShareId=snapshot.child(data).child("adminId").getValue(String.class);
                     String getShareDate=snapshot.child(data).child("date").getValue(String.class);
@@ -298,7 +299,7 @@ public class AdminActivity extends AppCompatActivity {
 
 //                       // Toast.makeText(context, "hy", Toast.LENGTH_SHORT).show();
 
-                        userListOfAdminActivity.add(new ModelClassOfAdminActivity(R.drawable.dollar5, getShareName, getShareDate, "3", "3", data.toString(), String.valueOf(i)));
+                        userListOfAdminActivity.add(new ModelClassOfAdminActivity(R.drawable.dollar5, getShareDate, getShareName, getSharePercentage+"%", "3", data.toString(), String.valueOf(i)));
 
                     }
 

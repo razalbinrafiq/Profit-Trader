@@ -326,11 +326,11 @@ public class ShareDetails extends AppCompatActivity {
 
 
                                 mDbRef.setValue(String.valueOf(num));
-                                mDbRef1.setValue(String.valueOf(buyAmountInt));
+                                mDbRef1.setValue(String.valueOf(buyAmountInt+buyAmountInt/100*Integer.parseInt(percentageOfShare)));
                                 mDbRef2.setValue(String.valueOf(setSoldSum));
                                 mDbRef5.setValue(String.valueOf(nameOfUserBought));
 
-                                mDbRef3.setValue(String.valueOf(buyAmountIntInAdmin));
+                                mDbRef3.setValue(String.valueOf(buyAmountIntInAdmin+buyAmountInt/100*Integer.parseInt(percentageOfShare)));
                                 mDbRef6.setValue(String.valueOf(nameOfUserBought));
 
 

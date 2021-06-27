@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -40,6 +41,7 @@ public class AdminProfile extends AppCompatActivity {
         nameTextView=(TextView)findViewById(R.id.nameTextView);
         emailTextView=(TextView)findViewById(R.id.emailIDTextView) ;
         phoneTextView=(TextView)findViewById(R.id.phoneTextView) ;
+        passwordEditButton=(Button)findViewById(R.id.editPasswordButton);
 
 
 
@@ -74,6 +76,15 @@ public class AdminProfile extends AppCompatActivity {
         });
 //
 //
+        passwordEditButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(AdminProfile.this,EditProfile.class);
+                startActivity(i);
+
+            }
+        });
+
 
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation_admin_activity);
         bottomNavigationView.setSelectedItemId(R.id.profile2);
