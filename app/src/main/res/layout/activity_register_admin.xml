@@ -15,6 +15,8 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         android:text="ADMIN REGISTRATION"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:gravity="center"
         />
 
@@ -93,6 +95,7 @@
                 android:inputType="phone"
                 android:textColorHint="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:hint="PASSWORD"
@@ -100,18 +103,61 @@
             android:background="@color/white"
             android:textColorHint="@color/black"
             android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:text="TYPE OF SHOP"/>
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp">
+
+                <RadioButton
+                    android:id="@+id/radioJewellery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Jewellery"
+                    android:onClick="checkButton"/>
+                <RadioButton
+                    android:id="@+id/radioOthers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Others"
+                    android:checked="true"
+                    android:onClick="checkButton"/>
+
+            </RadioGroup>
+        </LinearLayout>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:hint="PASSWORD"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:textColorHint="@color/black"
+            android:layout_height="wrap_content">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:ems="10"
-                android:inputType="textPassword"
-                />
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:hint="PASSWORD"
+            android:hint="CONFIRM PASSWORD"
             android:layout_marginTop="10dp"
             android:background="@color/white"
             android:textColorHint="@color/black"
