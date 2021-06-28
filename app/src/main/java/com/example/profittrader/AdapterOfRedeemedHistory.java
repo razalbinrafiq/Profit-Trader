@@ -43,9 +43,9 @@ public void onBindViewHolder(@NonNull AdapterOfRedeemedHistory.ViewHolder holder
         // holder.nameTextView.setBackgroundColor(255);
 
         if(Integer.parseInt(number.toString())%2==0)
-        holder.itemView.setBackgroundColor(Color.parseColor("#08a12c"));
+        holder.itemView.setBackgroundColor(Color.parseColor("#858a80"));
         else
-        holder.itemView.setBackgroundColor(Color.parseColor("#72f289"));
+        holder.itemView.setBackgroundColor(Color.parseColor("#70825f"));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
 @Override

@@ -43,9 +43,9 @@ public class AdapterOfPeopleBought extends RecyclerView.Adapter<AdapterOfPeopleB
         // holder.nameTextView.setBackgroundColor(255);
 
         if(Integer.parseInt(number.toString())%2==0)
-            holder.itemView.setBackgroundColor(Color.parseColor("#08a12c"));
+            holder.itemView.setBackgroundColor(Color.parseColor("#466b82"));
         else
-            holder.itemView.setBackgroundColor(Color.parseColor("#72f289"));
+            holder.itemView.setBackgroundColor(Color.parseColor("#5b88a3"));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
