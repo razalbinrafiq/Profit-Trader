@@ -395,32 +395,29 @@ public class AdminActivity extends AppCompatActivity {
 
                     if(type.equals("Jewellery")){
                         postFixTo=" grams";
+                        if(getShareId.equals(user)){
+
+                            i=i+1;
+
+                            userListOfAdminActivity.add(new ModelClassOfAdminActivity(R.drawable.dollar5, getShareDate, getShareName+postFixTo, getSharePercentage, "3", data.toString(), String.valueOf(i)));
+
+                        }
+
                     }
                     else {
                        postFixTo=" %";
-                    }
+                        if(getShareId.equals(user)){
 
-//                    String getShopType=snapshot.child(data).child("postFix").getValue(String.class);
-//                  //  Toast.makeText(context, "Type"+getShopType, Toast.LENGTH_SHORT).show();
-//
-//                    if(getShopType=="Others"){
-//                        addTo=" %";
-//
-//                    }
-//                    else{
-//                        addTo=" grams";
-//                    }
-                    //Toast.makeText(context, "hy", Toast.LENGTH_SHORT).show();
-                    if(getShareId.equals(user)){
-                       // mLayout.addView(sentText(getApplicationContext(),data),i);
-                      //  mLayout.addView(activeSharesButton(getApplicationContext()),i+1);
-                        i=i+1;
+                            i=i+1;
 
-//                       // Toast.makeText(context, "hy", Toast.LENGTH_SHORT).show();
+                            userListOfAdminActivity.add(new ModelClassOfAdminActivity(R.drawable.dollar5, getShareDate, getShareName, getSharePercentage+postFixTo, "3", data.toString(), String.valueOf(i)));
 
-                        userListOfAdminActivity.add(new ModelClassOfAdminActivity(R.drawable.dollar5, getShareDate, getShareName, getSharePercentage+postFixTo, "3", data.toString(), String.valueOf(i)));
+                        }
+
 
                     }
+
+
 
                     initRecyclerView();
 

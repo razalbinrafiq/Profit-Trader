@@ -1,8 +1,10 @@
 package com.example.profittrader;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -25,8 +27,8 @@ public class ShareDetailsJewellery extends AppCompatActivity {
 
 
     TextView shopName,availableAmount,totalAmount,percentageAmount;
-    EditText amountToBuy;
-    Button buyShare;
+    EditText amountToBuy,amountGoldEditText;
+    Button buyShare,calculateButton;
     FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
     String pathOfShare;
     String shareKey,shopKey;
@@ -74,7 +76,9 @@ public class ShareDetailsJewellery extends AppCompatActivity {
         totalAmount=findViewById(R.id.totalAmountTextView);
         percentageAmount=findViewById(R.id.percentageAmountTextView);
         amountToBuy=findViewById(R.id.amountEditText);
+        amountGoldEditText=findViewById(R.id.amountGoldEditText);
         buyShare=findViewById(R.id.buyButton);
+        calculateButton=findViewById(R.id.calculateButton);
 
         Bundle login = getIntent().getExtras();
         if (login != null) {
@@ -148,6 +152,12 @@ public class ShareDetailsJewellery extends AppCompatActivity {
         });
 
 
+//        calculateButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
         buyShare.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -325,46 +335,72 @@ public class ShareDetailsJewellery extends AppCompatActivity {
                     mDbRef7 = mDatabase.getReference(fbUpdateNameOfShopInUser);
 
 
+                    int totalAmount=buyAmountInt*intPercentageOfShare;
+
+                    AlertDialog alertDialog = new AlertDialog.Builder(ShareDetailsJewellery.this)
+//set icon
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+//set title
+                            .setTitle("Buying for "+String.valueOf(totalAmount))
+//set message
+                            .setMessage("Press Yes To Confirm Buying")
+//set positive button
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    mDbRef.setValue(String.valueOf(num));
+                                    mDbRef1.setValue(String.valueOf(buyAmountInt));
+                                    mDbRef2.setValue(String.valueOf(setSoldSum));
+                                    mDbRef5.setValue(String.valueOf(nameOfUserBought));
+
+                                    mDbRef3.setValue(String.valueOf(buyAmountIntInAdmin));
+                                    mDbRef6.setValue(String.valueOf(nameOfUserBought));
 
 
-                    mDbRef.setValue(String.valueOf(num));
-                    mDbRef1.setValue(String.valueOf(buyAmountInt+buyAmountInt/100*Integer.parseInt(percentageOfShare)));
-                    mDbRef2.setValue(String.valueOf(setSoldSum));
-                    mDbRef5.setValue(String.valueOf(nameOfUserBought));
-
-                    mDbRef3.setValue(String.valueOf(buyAmountIntInAdmin+buyAmountInt/100*Integer.parseInt(percentageOfShare)));
-                    mDbRef6.setValue(String.valueOf(nameOfUserBought));
-
-
-                    mDbRef7.setValue(String.valueOf(nameOfShopBought));
+                                    mDbRef7.setValue(String.valueOf(nameOfShopBought));
 
 
 
 
-
-                    Intent i=new Intent(ShareDetailsJewellery.this,BuyingShareSplashLayout.class);
-                    Bundle bundle=new Bundle();
-                    //bundle.putString("id_of_share",pathOfShare);
+                                    Intent i2=new Intent(ShareDetailsJewellery.this,BuyingShareSplashLayout.class);
+                                    Bundle bundle=new Bundle();
+                                    //bundle.putString("id_of_share",pathOfShare);
 //                                bundle.putString("num",String.valueOf(num));
 //                                bundle.putString("buyAmount",buyAmount);
 //                                bundle.putString("setSoldSum",String.valueOf(setSoldSum));
 //                                bundle.putString("idOfShop",idOfShop);
 
-                    i.putExtras(bundle);
-                    finish();
-                    startActivity(i);
+                                    i2.putExtras(bundle);
+                                    finish();
+                                    startActivity(i2);
+
+
+
+
+
+                                }
+                            })
+//set negative button
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    //set what should happen when negative button is clicked
+                                    Toast.makeText(getApplicationContext(),"Nothing Happened",Toast.LENGTH_LONG).show();
+                                }
+                            })
+                            .show();
 
 
 
 
 
 
-                    // finish();
-//                           // }
-//                            else
-//                            {
-//                                Toast.makeText(ShareDetails.this, "ENTER A VALID AMOUNT", Toast.LENGTH_SHORT).show();
-//                            }
+
+
+
+
+
 
 
 

@@ -29,7 +29,7 @@
                     android:layout_width="153dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:text="Grams Of Gold"
+                    android:text="Amount Per Gram"
                     android:textSize="21dp"
                     android:paddingRight="20dp"
                     tools:layout_editor_absoluteX="26dp"
@@ -40,7 +40,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="In Grams"
                     android:inputType="textPersonName"
                     android:scrollbarAlwaysDrawHorizontalTrack="true"
                     app:layout_constraintEnd_toEndOf="parent" />
@@ -74,7 +73,7 @@
                     android:layout_width="154dp"
                     android:layout_height="wrap_content"
                     android:paddingRight="20dp"
-                    android:text="Amount per gram"
+                    android:text="Grams Of Gold"
                     android:textColor="@color/black"
                     android:textSize="21dp"
                     tools:layout_editor_absoluteX="26dp"
@@ -85,6 +84,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:hint="In Grams"
                     android:inputType="textPersonName"
                     app:layout_constraintEnd_toEndOf="parent" />
             </LinearLayout>
