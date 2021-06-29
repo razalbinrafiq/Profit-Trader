@@ -61,11 +61,12 @@ public class AdminLogin extends AppCompatActivity {
                             if(data.equals(user_id.toString()))
                             {
                                 password=password_id.getText().toString();
-                                DatabaseReference fb_read = FirebaseDatabase.getInstance().getReference("admins"+"/"+user_id+"/"+"userDetails"+"/"+"password1");
+                                DatabaseReference fb_read = FirebaseDatabase.getInstance().getReference("admins"+"/"+user_id+"/"+"userDetails");
                                 fb_read.addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        String pass=snapshot.getValue(String.class);
+                                        String pass=snapshot.child("password1").getValue(String.class);
+                                        String type=snapshot.child("type").getValue(String.class);
                                         //                       Toast.makeText(LoginPage.this,pass, Toast.LENGTH_SHORT).show();
                                         if(pass.equals(password.toString())){
                                             //Toast.makeText(LoginPage.this,"login", Toast.LENGTH_SHORT).show();
@@ -74,6 +75,7 @@ public class AdminLogin extends AppCompatActivity {
                                             editor.putString("id",user_id );
                                             editor.putString("password",password );
                                             editor.putString("mode","admin" );
+                                            editor.putString("type",type );
                                             editor.commit();
 
                                             Intent login=new Intent(AdminLogin.this,AdminActivity.class);

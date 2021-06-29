@@ -8,22 +8,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserActivity extends AppCompatActivity {
+public class UserActivityJewellery extends AppCompatActivity {
 
 
 
@@ -65,10 +59,12 @@ public class UserActivity extends AppCompatActivity {
 
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
+        setContentView(R.layout.activity_user_jewellery);
 
         Bundle login = getIntent().getExtras();
         if (login != null) {
@@ -83,7 +79,7 @@ public class UserActivity extends AppCompatActivity {
 //        bottomNavigation.add(new MeowBottomNavigation.Model(3,R.drawable.ic_wallet));
 
 
-        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation_jewellery);
         bottomNavigationView.setSelectedItemId(R.id.home);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -113,11 +109,11 @@ public class UserActivity extends AppCompatActivity {
 
         getRef1 = FirebaseDatabase.getInstance().getReference("shares");
         //addChittyButton=(Button)findViewById(R.id.addChittyButton);
-       // mLayout=(GridLayout) findViewById(R.id.mylayout);
+        // mLayout=(GridLayout) findViewById(R.id.mylayout);
 
 
-         initData("1,","2","2,3","4,","5","67");
-      //  initRecyclerView();
+        initData("1,","2","2,3","4,","5","67");
+        //  initRecyclerView();
 
 
 
@@ -127,7 +123,6 @@ public class UserActivity extends AppCompatActivity {
     }
 
     private void initRecyclerView() {
-
         recyclerView=findViewById(R.id.recyclerView);
         layoutManager=new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
@@ -164,9 +159,9 @@ public class UserActivity extends AppCompatActivity {
                     getShareId=snapshot.child(data).child("adminId").getValue(String.class);
                     String getShareType=snapshot.child(data).child("typeOfShop").getValue(String.class);
 
-                    if(getShareType.equals("Others")) {
+                    if(getShareType.equals("Jewellery")) {
                         i++;
-                        userList.add(new ModelClass(R.drawable.logo, getShareName, getShareAmount, getShareDate, getShareId, data.toString(), String.valueOf(i)));
+                        userList.add(new ModelClass(R.drawable.gold1, getShareName, getShareAmount, getShareDate, getShareId, data.toString(), String.valueOf(i)));
                     }
 
 
@@ -183,14 +178,6 @@ public class UserActivity extends AppCompatActivity {
         });
 
 
-
-//for(int i=1;i<=3;i++){
-//    userList.add(new ModelClass(R.drawable.logo,"name","amount", "date"));
-//}
-
-
-       //userList.add(new ModelClass(R.drawable.logo,getShareName.toString(),"amount1", "date1"));
-
     }
 
 
@@ -203,7 +190,7 @@ public class UserActivity extends AppCompatActivity {
         editor.putString("mode","0" );
         editor.commit();
 
-        Intent login=new Intent(UserActivity.this,Login.class);
+        Intent login=new Intent(UserActivityJewellery.this,Login.class);
         finish();
         startActivity(login);
         System.exit(0);
@@ -212,9 +199,8 @@ public class UserActivity extends AppCompatActivity {
 
     public void profiles()
     {
-//        String sendingprofile="users/"+user+"/userDetails";
-//
-        Intent login=new Intent(UserActivity.this,UserActivityJewellery.class);
+
+        Intent login=new Intent(UserActivityJewellery.this,UserActivity.class);
         login.putExtra("user_id",user);
         startActivity(login);
         finish();
@@ -225,7 +211,7 @@ public class UserActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater= getMenuInflater();
-        inflater.inflate(R.menu.agent2,menu);
+        inflater.inflate(R.menu.jewellery_logout,menu);
         return true;
     }
 

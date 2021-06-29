@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProfitTrader">
-        <activity android:name=".EditProfile"></activity>
+        <activity android:name=".ShareDetailsJewellery"></activity>
+        <activity android:name=".UserActivityJewellery" />
+        <activity android:name=".EditProfile" />
         <activity android:name=".RedeemedHistory" />
         <activity android:name=".RedeemPoints" />
         <activity android:name=".PeopleBought" />

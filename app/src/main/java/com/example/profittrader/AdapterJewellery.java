@@ -16,61 +16,48 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
+public class AdapterJewellery extends RecyclerView.Adapter<AdapterJewellery.ViewHolder> {
 
-    private List<ModelClass> userList;
+    private List<ModelClassJewellery> userListJewellery;
 
-    public Adapter(List<ModelClass>userList){this.userList=userList;}
+    public AdapterJewellery(List<ModelClassJewellery>userLiuserListJewelleryst){this.userListJewellery=userListJewellery;}
 
 
     @NonNull
     @Override
-    public Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_design,parent,false);
+    public AdapterJewellery.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_design_jewellery,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Adapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterJewellery.ViewHolder holder, int position) {
 
-        int resource= userList.get(position).getImageView1();
-        String name=userList.get(position).getNameTextView();
-        String amount=userList.get(position).getAmountTextView();
-        String date=userList.get(position).getDateTextView();
-        String id=userList.get(position).getIdTextView();
-        String shareId=userList.get(position).getShareIdTextView();
-        String number=userList.get(position).getNumberTextView();
+        int resource= userListJewellery.get(position).getImageView1();
+        String name=userListJewellery.get(position).getNameTextView();
+        String amount=userListJewellery.get(position).getAmountTextView();
+        String date=userListJewellery.get(position).getDateTextView();
+        String id=userListJewellery.get(position).getIdTextView();
+        String shareId=userListJewellery.get(position).getShareIdTextView();
+        String number=userListJewellery.get(position).getNumberTextView();
 
         holder.setData(resource,name,amount,date,id,shareId,number);
-       // holder.nameTextView.setBackgroundColor(255);
+        // holder.nameTextView.setBackgroundColor(255);
 
         if(Integer.parseInt(number.toString())%2==0)
             holder.itemView.setBackgroundColor(Color.parseColor("#CDCFD5"));
-       else
+        else
             holder.itemView.setBackgroundColor(Color.parseColor("#838795"));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(resource==R.drawable.gold1){
-                    //holder.nameTextView.setText("UI");
-                    Context u=holder.itemView.getContext();
-                    Intent iu=new Intent(u,ShareDetailsJewellery.class);
-                    iu.putExtra("path",shareId);
-                    u.startActivity(iu);
-                    Toast.makeText(u, holder.shareIdTextView.getText(), Toast.LENGTH_SHORT).show();
-                }
-
-                else{
-                    //holder.nameTextView.setText("UI");
-                    Context u=holder.itemView.getContext();
-                    Intent iu=new Intent(u,ShareDetails.class);
-                    iu.putExtra("path",shareId);
-                    u.startActivity(iu);
-                    Toast.makeText(u, holder.shareIdTextView.getText(), Toast.LENGTH_SHORT).show();
-                }
-
+                //holder.nameTextView.setText("UI");
+                Context u=holder.itemView.getContext();
+                Intent iu=new Intent(u,ShareDetails.class);
+                iu.putExtra("path",shareId);
+                u.startActivity(iu);
+                Toast.makeText(u, holder.shareIdTextView.getText(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -79,7 +66,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return userList.size();
+        return userListJewellery.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

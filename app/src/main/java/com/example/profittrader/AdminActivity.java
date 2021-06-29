@@ -63,6 +63,7 @@ public class AdminActivity extends AppCompatActivity {
     String getShareName,getCurrentNum;
     String user = null;
     String nameOfShop = null;
+    String addTo;
 
 
 
@@ -168,79 +169,173 @@ public class AdminActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(AdminActivity.this);
         LayoutInflater inflater = getLayoutInflater();
-        final View dialoglayout= inflater.inflate(R.layout.add_shares,null);
-        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
 
-                shareProfit=(EditText)dialoglayout.findViewById(R.id.shareProfitEditText);
-                sharedate=(EditText)dialoglayout.findViewById(R.id.sharedateEditText);
-                shareamount=(EditText)dialoglayout.findViewById(R.id.shareamountEditText);
+        SharedPreferences loginDetails =  getSharedPreferences("loginDetails", MODE_PRIVATE);
+        String type= loginDetails.getString("type","0");
 
-                String shareProfitPercentage=shareProfit.getText().toString();
-                String chittyDate=sharedate.getText().toString();
-                String chittyPaymentDate=shareamount.getText().toString();
-
-                String fbChittynum="shares/"+num;
-                String fbChittyname=fbChittynum+"/adminId";
-                String fbdate=fbChittynum +"/date";
-                String fbpaymentdate=fbChittynum +"/shareAmount";
-                String fbStatus=fbChittynum+"/status";
-                String shareProfitPath=fbChittynum+"/profitPercentage";
-                String fbShopName=fbChittynum+"/shopName";
-                String soldShareCount=fbChittynum+"/soldCount";
-                String soldShareSum=fbChittynum+"/soldSum";
-                String redeemedShareSum=fbChittynum+"/redeemedSum";
-
-                DatabaseReference mDbRef1 = mDatabase.getReference(fbChittyname);
-                DatabaseReference mDbRef2 = mDatabase.getReference(fbdate);
-                DatabaseReference mDbRef3= mDatabase.getReference(fbpaymentdate);
-                DatabaseReference mDbRef4= mDatabase.getReference("shareCount");
-                DatabaseReference mDbRef5= mDatabase.getReference(fbStatus);
-                DatabaseReference mDbRef6 = mDatabase.getReference(shareProfitPath);
-                DatabaseReference mDbRef7 = mDatabase.getReference(fbShopName);
-                DatabaseReference mDbRef8 = mDatabase.getReference(soldShareCount);
-                DatabaseReference mDbRef9 = mDatabase.getReference(soldShareSum);
-                DatabaseReference mDbRef10 = mDatabase.getReference(redeemedShareSum);
-
-                mDbRef1.setValue(user);
-                mDbRef2.setValue(chittyDate);
-                mDbRef3.setValue(chittyPaymentDate);
-                mDbRef4.setValue(num);
-                mDbRef5.setValue("active");
-                mDbRef6.setValue(shareProfitPercentage);
-                mDbRef7.setValue(nameOfShop);
-                mDbRef8.setValue("0");
-                mDbRef9.setValue("0");
-                mDbRef10.setValue("0");
+        if(type.equals("Jewellery")){
 
 
-                dialog.dismiss();
+            final View dialoglayout= inflater.inflate(R.layout.add_gold_share,null);
+            builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    shareProfit=(EditText)dialoglayout.findViewById(R.id.shareProfitEditText);
+                    sharedate=(EditText)dialoglayout.findViewById(R.id.sharedateEditText);
+                    shareamount=(EditText)dialoglayout.findViewById(R.id.shareamountEditText);
+
+                    String shareProfitPercentage=shareProfit.getText().toString();
+                    String chittyDate=sharedate.getText().toString();
+                    String chittyPaymentDate=shareamount.getText().toString();
+
+                    String fbChittynum="shares/"+num;
+                    String fbChittyname=fbChittynum+"/adminId";
+                    String fbdate=fbChittynum +"/date";
+                    String fbpaymentdate=fbChittynum +"/shareAmount";
+                    String fbStatus=fbChittynum+"/status";
+                    String shareProfitPath=fbChittynum+"/profitPercentage";
+                    String fbShopName=fbChittynum+"/shopName";
+                    String soldShareCount=fbChittynum+"/soldCount";
+                    String soldShareSum=fbChittynum+"/soldSum";
+                    String redeemedShareSum=fbChittynum+"/redeemedSum";
+                    String typeOfShop=fbChittynum+"/typeOfShop";
+
+                    DatabaseReference mDbRef1 = mDatabase.getReference(fbChittyname);
+                    DatabaseReference mDbRef2 = mDatabase.getReference(fbdate);
+                    DatabaseReference mDbRef3= mDatabase.getReference(fbpaymentdate);
+                    DatabaseReference mDbRef4= mDatabase.getReference("shareCount");
+                    DatabaseReference mDbRef5= mDatabase.getReference(fbStatus);
+                    DatabaseReference mDbRef6 = mDatabase.getReference(shareProfitPath);
+                    DatabaseReference mDbRef7 = mDatabase.getReference(fbShopName);
+                    DatabaseReference mDbRef8 = mDatabase.getReference(soldShareCount);
+                    DatabaseReference mDbRef9 = mDatabase.getReference(soldShareSum);
+                    DatabaseReference mDbRef10 = mDatabase.getReference(redeemedShareSum);
+                    DatabaseReference mDbRef11 = mDatabase.getReference(typeOfShop);
+
+                    mDbRef1.setValue(user);
+                    mDbRef2.setValue(chittyDate);
+                    mDbRef3.setValue(chittyPaymentDate);
+                    mDbRef4.setValue(num);
+                    mDbRef5.setValue("active");
+                    mDbRef6.setValue(shareProfitPercentage);
+                    mDbRef7.setValue(nameOfShop);
+                    mDbRef8.setValue("0");
+                    mDbRef9.setValue("0");
+                    mDbRef10.setValue("0");
+                    mDbRef11.setValue(type);
 
 
-                Intent iu=new Intent(AdminActivity.this,AdminActivity.class);
-                iu.putExtra("user_id",user);
-                finish();
-                startActivity(iu);
-                //System.exit(0);
-
-            }
-
-        });
+                    dialog.dismiss();
 
 
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //               Toast.makeText(getApplicationContext(), "No button Clicked", Toast.LENGTH_LONG).show();
-                Log.i("Code2care ", "No button Clicked!");
-                dialog.dismiss();
+                    Intent iu=new Intent(AdminActivity.this,AdminActivity.class);
+                    iu.putExtra("user_id",user);
+                    finish();
+                    startActivity(iu);
+                    //System.exit(0);
 
-            }
-        });
+                }
 
-        builder.setView(dialoglayout);
-        builder.show();
+            });
+
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //               Toast.makeText(getApplicationContext(), "No button Clicked", Toast.LENGTH_LONG).show();
+                    Log.i("Code2care ", "No button Clicked!");
+                    dialog.dismiss();
+
+                }
+            });
+
+            builder.setView(dialoglayout);
+            builder.show();
+
+
+        }
+        else{
+            final View dialoglayout= inflater.inflate(R.layout.add_shares,null);
+            builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    shareProfit=(EditText)dialoglayout.findViewById(R.id.shareProfitEditText);
+                    sharedate=(EditText)dialoglayout.findViewById(R.id.sharedateEditText);
+                    shareamount=(EditText)dialoglayout.findViewById(R.id.shareamountEditText);
+
+                    String shareProfitPercentage=shareProfit.getText().toString();
+                    String chittyDate=sharedate.getText().toString();
+                    String chittyPaymentDate=shareamount.getText().toString();
+
+                    String fbChittynum="shares/"+num;
+                    String fbChittyname=fbChittynum+"/adminId";
+                    String fbdate=fbChittynum +"/date";
+                    String fbpaymentdate=fbChittynum +"/shareAmount";
+                    String fbStatus=fbChittynum+"/status";
+                    String shareProfitPath=fbChittynum+"/profitPercentage";
+                    String fbShopName=fbChittynum+"/shopName";
+                    String soldShareCount=fbChittynum+"/soldCount";
+                    String soldShareSum=fbChittynum+"/soldSum";
+                    String redeemedShareSum=fbChittynum+"/redeemedSum";
+                    String typeOfShop=fbChittynum+"/typeOfShop";
+
+                    DatabaseReference mDbRef1 = mDatabase.getReference(fbChittyname);
+                    DatabaseReference mDbRef2 = mDatabase.getReference(fbdate);
+                    DatabaseReference mDbRef3= mDatabase.getReference(fbpaymentdate);
+                    DatabaseReference mDbRef4= mDatabase.getReference("shareCount");
+                    DatabaseReference mDbRef5= mDatabase.getReference(fbStatus);
+                    DatabaseReference mDbRef6 = mDatabase.getReference(shareProfitPath);
+                    DatabaseReference mDbRef7 = mDatabase.getReference(fbShopName);
+                    DatabaseReference mDbRef8 = mDatabase.getReference(soldShareCount);
+                    DatabaseReference mDbRef9 = mDatabase.getReference(soldShareSum);
+                    DatabaseReference mDbRef10 = mDatabase.getReference(redeemedShareSum);
+                    DatabaseReference mDbRef11 = mDatabase.getReference(typeOfShop);
+
+                    mDbRef1.setValue(user);
+                    mDbRef2.setValue(chittyDate);
+                    mDbRef3.setValue(chittyPaymentDate);
+                    mDbRef4.setValue(num);
+                    mDbRef5.setValue("active");
+                    mDbRef6.setValue(shareProfitPercentage);
+                    mDbRef7.setValue(nameOfShop);
+                    mDbRef8.setValue("0");
+                    mDbRef9.setValue("0");
+                    mDbRef10.setValue("0");
+                    mDbRef11.setValue(type);
+
+
+                    dialog.dismiss();
+
+
+                    Intent iu=new Intent(AdminActivity.this,AdminActivity.class);
+                    iu.putExtra("user_id",user);
+                    finish();
+                    startActivity(iu);
+                    //System.exit(0);
+
+                }
+
+            });
+
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //               Toast.makeText(getApplicationContext(), "No button Clicked", Toast.LENGTH_LONG).show();
+                    Log.i("Code2care ", "No button Clicked!");
+                    dialog.dismiss();
+
+                }
+            });
+
+            builder.setView(dialoglayout);
+            builder.show();
+
+
+        }
+
+
+
 
 
     }
@@ -291,6 +386,30 @@ public class AdminActivity extends AppCompatActivity {
                     getCurrentNum=data;
                     String getShareId=snapshot.child(data).child("adminId").getValue(String.class);
                     String getShareDate=snapshot.child(data).child("date").getValue(String.class);
+
+
+                    String postFixTo;
+
+                    SharedPreferences loginDetails =  getSharedPreferences("loginDetails", MODE_PRIVATE);
+                    String type= loginDetails.getString("type","0");
+
+                    if(type.equals("Jewellery")){
+                        postFixTo=" grams";
+                    }
+                    else {
+                       postFixTo=" %";
+                    }
+
+//                    String getShopType=snapshot.child(data).child("postFix").getValue(String.class);
+//                  //  Toast.makeText(context, "Type"+getShopType, Toast.LENGTH_SHORT).show();
+//
+//                    if(getShopType=="Others"){
+//                        addTo=" %";
+//
+//                    }
+//                    else{
+//                        addTo=" grams";
+//                    }
                     //Toast.makeText(context, "hy", Toast.LENGTH_SHORT).show();
                     if(getShareId.equals(user)){
                        // mLayout.addView(sentText(getApplicationContext(),data),i);
@@ -299,7 +418,7 @@ public class AdminActivity extends AppCompatActivity {
 
 //                       // Toast.makeText(context, "hy", Toast.LENGTH_SHORT).show();
 
-                        userListOfAdminActivity.add(new ModelClassOfAdminActivity(R.drawable.dollar5, getShareDate, getShareName, getSharePercentage+"%", "3", data.toString(), String.valueOf(i)));
+                        userListOfAdminActivity.add(new ModelClassOfAdminActivity(R.drawable.dollar5, getShareDate, getShareName, getSharePercentage+postFixTo, "3", data.toString(), String.valueOf(i)));
 
                     }
 

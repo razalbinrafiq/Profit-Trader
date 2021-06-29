@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/logout"
-        android:title="LOGOUT"
+        android:title="Logout"
         app:showAsAction="never"
         />
     <item
         android:id="@+id/profile"
-        android:title="PROFILE"
+        android:title="Jewellery Mode"
         app:showAsAction="never"
         />
 </menu>

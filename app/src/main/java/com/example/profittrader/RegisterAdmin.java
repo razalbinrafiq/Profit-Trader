@@ -97,6 +97,7 @@ public class RegisterAdmin extends AppCompatActivity {
                                 String emailid = details + "/" + "emailId";
                                 String num = details + "/" + "mobile";
                                 String type = details + "/" + "type";
+                                String postFix = details + "/" + "postFix";
                                 String passwordpath = details + "/" + "password1";
                                 String shareCount = user_id+"/"+username + "/" + "shareCount";
                                 //String password2=details+"/"+"password2";
@@ -105,6 +106,7 @@ public class RegisterAdmin extends AppCompatActivity {
                                 DatabaseReference email = mDatabase.getReference(emailid);
                                 DatabaseReference mno = mDatabase.getReference(num);
                                 DatabaseReference sType = mDatabase.getReference(type);
+                                DatabaseReference postF = mDatabase.getReference(postFix);
                                 DatabaseReference Passwordpath = mDatabase.getReference(passwordpath);
                                 DatabaseReference shareCountSetter = mDatabase.getReference(shareCount);
 
@@ -115,11 +117,19 @@ public class RegisterAdmin extends AppCompatActivity {
                                 int radioId=radioGroup.getCheckedRadioButtonId();
                                 radioButton=findViewById(radioId);
 
+                                String pFix;
+                                if(radioButton.getText().toString().equals("Jewellery")){
+                                    pFix=" grams";
+                                }
+                                else {
+                                    pFix=" %";
+                                }
 
                                 Agentname.setValue(name);
                                 email.setValue(mail);
                                 mno.setValue(mnumber);
                                 sType.setValue(radioButton.getText().toString());
+                                postF.setValue(pFix);
                                 Passwordpath.setValue(password1);
                                 shareCountSetter.setValue("0");
                                 //chittyCount.setValue(0);
