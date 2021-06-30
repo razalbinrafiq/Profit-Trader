@@ -41,10 +41,22 @@ public class AdapterOfUserWallet extends RecyclerView.Adapter<AdapterOfUserWalle
         holder.setData(resource,name,amount,date,id,shareId,number);
         // holder.nameTextView.setBackgroundColor(255);
 
-        if(Integer.parseInt(number.toString())%2==0)
-            holder.itemView.setBackgroundColor(Color.parseColor("#3d4a5e"));
-        else
-            holder.itemView.setBackgroundColor(Color.parseColor("#637899"));
+        if(id.equals("2")) {
+            if(Integer.parseInt(number.toString())%2==0)
+                holder.itemView.setBackgroundColor(Color.parseColor("#d4c84a"));
+            else
+                holder.itemView.setBackgroundColor(Color.parseColor("#ada21f"));
+
+        }
+
+        else {
+            if(Integer.parseInt(number.toString())%2==0)
+                holder.itemView.setBackgroundColor(Color.parseColor("#3d4a5e"));
+            else
+                holder.itemView.setBackgroundColor(Color.parseColor("#637899"));
+
+        }
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

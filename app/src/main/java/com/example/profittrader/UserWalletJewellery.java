@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +27,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserWallet extends AppCompatActivity {
+public class UserWalletJewellery extends AppCompatActivity {
+
 
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
@@ -40,11 +43,17 @@ public class UserWallet extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_wallet);
+        setContentView(R.layout.activity_user_wallet_jewellery);
 
+        RelativeLayout currentLayout =
+                (RelativeLayout) findViewById(R.id.userwalletjewellery);
+
+
+        currentLayout.setBackgroundColor(Color.parseColor("#ded573"));
 
 
         totalTextView=(TextView)findViewById(R.id.totalValueTextView);
@@ -156,15 +165,15 @@ public class UserWallet extends AppCompatActivity {
 
 
                             String getShopType=snapshot2.child("userDetails").child("type").getValue(String.class);
-                            if(getShopType.equals("Others")){
+                            if(getShopType.equals("Jewellery")){
 
                                 i=i+1;
                                 String getShareAmount=snapshot2.child("soldShares").child(check_ID).child("amountSum").getValue(String.class);
                                 shopName=snapshot2.child("userDetails").child("name").getValue(String.class);
                                 totalAmountInt=totalAmountInt+Integer.parseInt(getShareAmount);
-                                totalTextView.setText("₹ "+String.valueOf(totalAmountInt));
+                                totalTextView.setText(String.valueOf(totalAmountInt)+" Grams");
                                 if(Integer.parseInt(getShareAmount)!=0)
-                                    userListOfUserWallet.add(new ModelClassOfUserWallet(R.drawable.profile1, shopName, getShareAmount, data, "3", data.toString(), String.valueOf(i)));
+                                    userListOfUserWallet.add(new ModelClassOfUserWallet(R.drawable.profile1, shopName, getShareAmount, data, "2", data.toString(), String.valueOf(i)));
 
                                 initRecyclerView();
                             }
@@ -178,7 +187,7 @@ public class UserWallet extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onCancelled(@NonNull  DatabaseError error) {
+                        public void onCancelled(@NonNull DatabaseError error) {
 
                         }
                     });
@@ -213,7 +222,7 @@ public class UserWallet extends AppCompatActivity {
         editor.putString("mode","0" );
         editor.commit();
 
-        Intent login=new Intent(UserWallet.this,Login.class);
+        Intent login=new Intent(UserWalletJewellery.this,Login.class);
         finish();
         startActivity(login);
         System.exit(0);
@@ -224,7 +233,7 @@ public class UserWallet extends AppCompatActivity {
     {
 
 
-        startActivity(new Intent(getApplicationContext(),UserWalletJewellery.class));
+        startActivity(new Intent(getApplicationContext(),UserWallet.class));
         overridePendingTransition(0,0);
         finish();
 
@@ -235,7 +244,7 @@ public class UserWallet extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater= getMenuInflater();
-        inflater.inflate(R.menu.agent2,menu);
+        inflater.inflate(R.menu.jewellery_logout,menu);
         return true;
     }
 

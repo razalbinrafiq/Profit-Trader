@@ -44,10 +44,21 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         holder.setData(resource,name,amount,date,id,shareId,number);
        // holder.nameTextView.setBackgroundColor(255);
 
-        if(Integer.parseInt(number.toString())%2==0)
-            holder.itemView.setBackgroundColor(Color.parseColor("#CDCFD5"));
-       else
-            holder.itemView.setBackgroundColor(Color.parseColor("#838795"));
+        if(resource==R.drawable.gold1){
+            if(Integer.parseInt(number.toString())%2==0)
+                holder.itemView.setBackgroundColor(Color.parseColor("#d6c71e"));
+            else
+                holder.itemView.setBackgroundColor(Color.parseColor("#dbd158"));
+        }
+
+
+        else{
+            if(Integer.parseInt(number.toString())%2==0)
+                holder.itemView.setBackgroundColor(Color.parseColor("#CDCFD5"));
+            else
+                holder.itemView.setBackgroundColor(Color.parseColor("#838795"));
+        }
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
