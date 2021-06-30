@@ -10,19 +10,26 @@ android:padding="10dp"
 android:background="@color/white"
 tools:context=".MainActivity">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:cardCornerRadius="50dp"
+        android:layout_margin="5dp"
+        android:elevation="10dp">
 <ImageView
     android:layout_width="wrap_content"
-    android:layout_height="230dp"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:paddingTop="-10dp"
     android:src="@drawable/logo" />
-
+    </androidx.cardview.widget.CardView>
 
 <TextView
     android:id="@+id/welcome"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingTop="-1dp"
+    android:paddingTop="29dp"
     android:layout_gravity="center"
     android:text="WELCOME"
     android:textSize="40sp"
@@ -50,26 +57,28 @@ tools:context=".MainActivity">
 
     <Button
         android:id="@+id/userLoginButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#00000000"
+
         android:elevation="0dp"
         android:padding="20dp"
 
         android:text="USER LOGIN"
-        android:textColor="@color/black" />
+/>
 
     <Button
         android:id="@+id/adminLoginButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:background="#00000000"
+
         android:elevation="0dp"
         android:text="ADMIN LOGIN"
-        android:textColor="@color/black"
+
         android:layout_gravity="center"/>
+
+
 
 </LinearLayout>
 
