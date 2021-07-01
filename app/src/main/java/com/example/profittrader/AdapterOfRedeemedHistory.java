@@ -40,7 +40,7 @@ public void onBindViewHolder(@NonNull AdapterOfRedeemedHistory.ViewHolder holder
         String number=userListOfRedeemedHistory.get(position).getNumberTextView();
 
         holder.setData(resource,name,amount,date,id,shareId,number);
-        // holder.nameTextView.setBackgroundColor(255);
+
 
         if(Integer.parseInt(number.toString())%2==0)
         holder.itemView.setBackgroundColor(Color.parseColor("#858a80"));
@@ -50,12 +50,16 @@ public void onBindViewHolder(@NonNull AdapterOfRedeemedHistory.ViewHolder holder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
 @Override
 public void onClick(View v) {
-        //holder.nameTextView.setText("UI");
-//        Context u=holder.itemView.getContext();
-//        Intent iu=new Intent(u,ParticularSharesBought.class);
-//        iu.putExtra("path",shareId);
-//        u.startActivity(iu);
-        //Toast.makeText(u, holder.shareIdTextView.getText(), Toast.LENGTH_SHORT).show();
+
+            //holder.nameTextView.setText("UI");
+            Context u=holder.itemView.getContext();
+            Intent iu=new Intent(u,UserDetails.class);
+            iu.putExtra("user_id",name);
+            u.startActivity(iu);
+            //Toast.makeText(u, holder.shareIdTextView.getText(), Toast.LENGTH_SHORT).show();
+
+
+
         }
         });
 

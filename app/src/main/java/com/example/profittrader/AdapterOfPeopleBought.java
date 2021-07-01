@@ -52,8 +52,8 @@ public class AdapterOfPeopleBought extends RecyclerView.Adapter<AdapterOfPeopleB
             public void onClick(View v) {
                 //holder.nameTextView.setText("UI");
                 Context u=holder.itemView.getContext();
-                Intent iu=new Intent(u,ParticularSharesBought.class);
-                iu.putExtra("path",shareId);
+                Intent iu=new Intent(u,UserDetails.class);
+                iu.putExtra("user_id",shareId);
                 u.startActivity(iu);
                 //Toast.makeText(u, holder.shareIdTextView.getText(), Toast.LENGTH_SHORT).show();
             }

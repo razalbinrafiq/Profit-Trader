@@ -60,7 +60,7 @@ public class RedeemedHistory extends AppCompatActivity {
 
         SharedPreferences loginDetails =  getSharedPreferences("loginDetails", MODE_PRIVATE);
         check_ID = loginDetails.getString("id","0");
-        Toast.makeText(this, "kk:"+check_ID, Toast.LENGTH_SHORT).show();
+     //   Toast.makeText(this, "kk:"+check_ID, Toast.LENGTH_SHORT).show();
         DatabaseReference fb_to_read = FirebaseDatabase.getInstance().getReference("admins/"+check_ID+"/redeemedMembers/");
 
         fb_to_read.addValueEventListener(new ValueEventListener() {
@@ -93,7 +93,7 @@ public class RedeemedHistory extends AppCompatActivity {
 //
                     initRecyclerView();
 
-                    Toast.makeText(RedeemedHistory.this, data, Toast.LENGTH_SHORT).show();
+            //        Toast.makeText(RedeemedHistory.this, data, Toast.LENGTH_SHORT).show();
 //
                 }
 

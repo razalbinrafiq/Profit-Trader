@@ -70,7 +70,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                     Intent iu=new Intent(u,ShareDetailsJewellery.class);
                     iu.putExtra("path",shareId);
                     u.startActivity(iu);
-                    Toast.makeText(u, holder.shareIdTextView.getText(), Toast.LENGTH_SHORT).show();
+               //     Toast.makeText(u, holder.shareIdTextView.getText(), Toast.LENGTH_SHORT).show();
                 }
 
                 else{
@@ -79,7 +79,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                     Intent iu=new Intent(u,ShareDetails.class);
                     iu.putExtra("path",shareId);
                     u.startActivity(iu);
-                    Toast.makeText(u, holder.shareIdTextView.getText(), Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(u, holder.shareIdTextView.getText(), Toast.LENGTH_SHORT).show();
                 }
 
             }

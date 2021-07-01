@@ -110,7 +110,7 @@ public class RedeemPoints extends AppCompatActivity {
 
                 nameOfUser=snapshot.child("name").getValue(String.class);
                 emailOfUser=snapshot.child("emailId").getValue(String.class);
-                Toast.makeText(RedeemPoints.this, "l"+emailOfUser+nameOfUser, Toast.LENGTH_SHORT).show();
+         //       Toast.makeText(RedeemPoints.this, "l"+emailOfUser+nameOfUser, Toast.LENGTH_SHORT).show();
                 phoneOfUser=snapshot.child("mobile").getValue(String.class);
 
 
@@ -231,7 +231,7 @@ public class RedeemPoints extends AppCompatActivity {
             }
         });
 
-        Toast.makeText(this, "path: "+ pathOfShare, Toast.LENGTH_SHORT).show();
+  //      Toast.makeText(this, "path: "+ pathOfShare, Toast.LENGTH_SHORT).show();
 
 
 

@@ -339,11 +339,11 @@ public class ShareDetailsJewellery extends AppCompatActivity {
 
                     AlertDialog alertDialog = new AlertDialog.Builder(ShareDetailsJewellery.this)
 //set icon
-                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setIcon(android.R.drawable.ic_menu_send)
 //set title
                             .setTitle("Buying for "+String.valueOf(totalAmount))
 //set message
-                            .setMessage("Press Yes To Confirm Buying")
+                            .setMessage("Confirm Buying ?")
 //set positive button
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
