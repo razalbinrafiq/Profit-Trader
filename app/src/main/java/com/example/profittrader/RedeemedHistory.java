@@ -87,7 +87,7 @@ public class RedeemedHistory extends AppCompatActivity {
 //
 ////                       // Toast.makeText(context, "hy", Toast.LENGTH_SHORT).show();
 //
-                    userListOfRedeemedHistory.add(new ModelClassOfRedeemedHistory(R.drawable.dollar5, getShareUserId, getShareAmount, getShareName, getShareTime, getShareDate, String.valueOf(i)));
+                    userListOfRedeemedHistory.add(new ModelClassOfRedeemedHistory(R.drawable.dollar5, getShareUserId,"₹ "+getShareAmount, getShareName, getShareTime, getShareDate, String.valueOf(i)));
 //
 //
 //

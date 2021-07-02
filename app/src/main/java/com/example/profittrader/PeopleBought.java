@@ -122,7 +122,7 @@ public class PeopleBought extends AppCompatActivity {
 //                       // Toast.makeText(context, "hy", Toast.LENGTH_SHORT).show();
 
                     if(Integer.parseInt(getShareAmount)!=0)
-                        userListOfPeopleBought.add(new ModelClassOfPeopleBought(R.drawable.profile1, getShareName, getShareAmount, getCurrentNum, "3", data.toString(), String.valueOf(i)));
+                        userListOfPeopleBought.add(new ModelClassOfPeopleBought(R.drawable.profile1, getShareName,"₹ "+ getShareAmount, getCurrentNum, "3", data.toString(), String.valueOf(i)));
 
 
                     initRecyclerView();
